@@ -18,3 +18,5 @@ console.log(Symbol('foo') === Symbol('foo')); // false
 
 
 // Ambas variables serán objetos creados por medio de estos contructores, y no solo conversiones como en el ejercicio principal de este reto.
+
+//More about Symbol(), and why it don't be the same?
