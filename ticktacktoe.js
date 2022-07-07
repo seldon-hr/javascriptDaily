@@ -9,7 +9,7 @@ if (player == 0) {
     alert('Choose rock');
 } else if (player == 1) {
     alert('Chossed paper');
-} else if (player == 2) {
+} else if (player == 1) {
     alert('Chossed sccissors');
 }
 
