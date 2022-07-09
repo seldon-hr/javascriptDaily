@@ -1,4 +1,4 @@
-Explica este código JavaScript
+// Explica este código JavaScript
 
 const myLifeSummedUp = ["☕", "💻", "🍷", "🍫"];
 
