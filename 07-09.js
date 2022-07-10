@@ -1,5 +1,5 @@
 
-Explica este código JavaScript
+// Explica este código JavaScript
 
 function greeting() {
   throw 'Hello world!';
