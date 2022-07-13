@@ -1,5 +1,5 @@
 
-Explica este código JavaScript
+// Explica este código JavaScript
 
 function sayHi(name) {
   return `Hi there, ${name}`;
