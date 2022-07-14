@@ -1,5 +1,5 @@
-Explica este código JavaScript 😎
-Basiccristian-fernando-villca-gutie
+// Explica este código JavaScript 😎
+
 var status = '😎';
 
 setTimeout(() => {
