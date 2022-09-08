@@ -5,6 +5,7 @@ const fruits = [
 ];
 
 const count = fruits.some((fruit) => fruit.quantity > 5);
+console.log(count);
 //Output true
 /* 
 El método some() comprueba si al menos un elemento del array cumple con la condición implementada por la
