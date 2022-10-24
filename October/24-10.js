@@ -19,3 +19,14 @@ Tanto el parámetro person1 como person2 adopatará el valor de peson, osea el o
 Los objetos se pasan por referencia. En el ejempl, person1, y person2 apuntan a la misma direección de memoria
 entonces la condión del if no se cumple y pasamos a imprimir They are the same!
 */
+
+function sum(number, number2) {
+    let result = 0;
+    console.log(result = number + number2);
+}
+
+sum(5);
+
+/* 
+    It seems when this happen only with you asign a object, but with numbers didn't happen.
+*/
