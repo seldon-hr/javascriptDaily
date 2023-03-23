@@ -31,4 +31,10 @@
 
     /* 
     * Arrow functions
+        Función empleada por sintaxis () => 
+        Funciones concisas y de una solo línea.
      */
+
+      let saluda = () => console.log("Soy un IIFE");
+      saluda();
+      
