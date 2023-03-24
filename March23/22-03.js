@@ -1,4 +1,5 @@
-/*
+
+}/*
 * * Funciones declarativas
     Utilizando la palabra reservada function al inicio para poder declarar la función
 */
