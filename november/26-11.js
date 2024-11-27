@@ -15,3 +15,15 @@ console.log(Object.fromEntries(tienda));
 tienda.forEach((valor, clave) => {
     console.log(`${clave}: ${JSON.stringify(valor)}`);
 });
+
+
+
+//Uso de sets
+const miSet = new Set();
+
+// Podemos añadir objetos al Set
+miSet.add({ nombre: "Juan", edad: 25 });
+miSet.add({ nombre: "María", edad: 30 });
+
+// Sin embargo, hay que tener cuidado con esto:
+miSet.add({ nombre: "Juan", edad: 25 }); // ¡Esto SÍ se añadirá!
