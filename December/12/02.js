@@ -48,3 +48,28 @@ var addSpaces = function(s, spaces) {
     })
     return result;
 };
+
+
+/**
+ * @param {string} s
+ * @param {number[]} spaces
+ * @return {string}
+ */
+var addSpaces = function(s, spaces) {
+    // Creamos un Set con los índices donde irán los espacios
+    // para hacer más eficiente la búsqueda
+    const spacesSet = new Set(spaces);
+    let resultado = '';
+    
+    // Iteramos sobre cada carácter del string
+    [...s].forEach((caracter, index) => {
+        // Si el índice actual está en nuestro Set de espacios,
+        // agregamos un espacio antes del carácter
+        if (spacesSet.has(index)) {
+            resultado += ' ';
+        }
+        resultado += caracter;
+    });
+    
+    return resultado;
+};
