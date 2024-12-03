@@ -73,3 +73,30 @@ var addSpaces = function(s, spaces) {
     
     return resultado;
 };
+
+
+/**
+ * @param {string} s
+ * @param {number[]} spaces
+ * @return {string}
+ */
+var addSpaces = function(s, spaces) {
+    let resultado = '';
+    let espaciosAgregados = 0;
+    
+    // Convertimos el string a array una sola vez
+    const caracteres = [...s];
+    
+    // Para cada carácter, verificamos si necesita espacios antes
+    caracteres.forEach((caracter, index) => {
+        spaces.forEach(spaceIndex => {
+            // Si encontramos un índice donde va un espacio
+            if (index === spaceIndex) {
+                resultado += ' ';
+            }
+        });
+        resultado += caracter;
+    });
+    
+    return resultado;
+};
