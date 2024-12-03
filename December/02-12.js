@@ -3,6 +3,42 @@ function createFrame(names) {
     let caracter = '*';
     let frontFrame = '';
     let longestName = 0;
+
+    names.forEach(name => {
+        if (name.length > longestName) {
+            longestName = name.length;
+        }
+    });
+    longestName =longestName + 4;
+    
+    for (let index = 0; index < longestName; index++) {
+        frontFrame += caracter;
+    }
+
+    console.log(frontFrame);
+    names.forEach(nombre => {
+        let counterString = 0;
+        counterString = (longestName - 3) - nombre.length;
+        let spaces = '';
+        let space = ' ';
+        for (let index = 0; index < counterString; index++) {
+            spaces += space;
+        }
+        console.log('* ' + nombre +  spaces + '*');
+    });
+    console.log(frontFrame);
+
+    //return result;
+}
+
+createFrame(names);
+
+/* Version with return
+let names = ['dan', 'brussate', 'walker'];
+function createFrame(names) {
+    let caracter = '*';
+    let frontFrame = '';
+    let longestName = 0;
     let result = '';
 
     names.forEach(name => {
@@ -33,4 +69,6 @@ function createFrame(names) {
 }
 
 console.log(createFrame(names));
+ */
+
 
