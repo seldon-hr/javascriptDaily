@@ -29,4 +29,8 @@ WHERE
 /* Borrar todos los registros de la instancia de ANUALIZADA */
 DELETE FROM CONFIGURACIONMULTIAGENTES 
 WHERE PLANTILLA_ID = 2;
+
+SELECT
+    *
+FROM CCTIPOCOTIZADOR
     
