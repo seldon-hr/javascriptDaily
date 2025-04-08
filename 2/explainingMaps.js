@@ -44,6 +44,9 @@ const scientificAuthors = [
     }
 ];
 
+const usernames = ['juanarsuaga', 'carlsagan', 'yuvalNoah', 'richarddawkins', 'stevebrussatte']
+
+
 /* Al manejar un mapa creamos una key (identificador único), la cual nos ayuda a que se 
 transforme en la identificación del objeto o dato que se va a mapear
 conforme al mapa.
@@ -66,7 +69,15 @@ Mientras una lista, el tiempo crece conforme hay más elementos 0(n)
 */
 
 
-function transformMap(list, key) {
+/* 
+    Ahora bien, en este ejemplo, estamos buscando que no se itere en comparar cada uno de las
+    llaves hasta que coincidan, sino que guardar todas en un mapa, y después buscar
+    conforme al mapa como key, y así ya imprimiríamos los usuarios que tenemos en
+    ambas listas. Y no compara uno por uno.
+*/
+
+
+function transformMap(list,usernames) {
     // Creación de mapa
     let mapaAutores = new Map();
     list.forEach(author => {
@@ -76,7 +87,14 @@ function transformMap(list, key) {
         // Agregamos el objeto conforme a su llave.
         mapaAutores.set(usernameKey, author);
     });
-    console.log(mapaAutores.get(key));
+    
+    usernames.forEach(element => {
+        const userMatch = mapaAutores.get(element);
+        if (userMatch) {
+            console.log(userMatch.name);
+        }
+    });
+
 }
 
-transformMap(scientificAuthors, 'carlsagan');
+transformMap(scientificAuthors, usernames);
