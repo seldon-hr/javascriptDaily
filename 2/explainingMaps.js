@@ -1,4 +1,14 @@
-// Lista de objetos sobre autores de libros de ciencia
+/* 
+    A continuación, tenemos dos cuestiones, en demostrar el tiempo que sería más sencillo
+    para iterar y buscar objetos que se encuentran en dos listas.
+     El problema es el siguiente:
+     Tengo dos listas, la primera incluye información sobre una lista de científicos
+     la segunda incluye aquellos username de otros científicos.
+     Aquí es necesario encontrar el que científicos se encuetran en ambas listas
+     y mostrar su infomación.
+*/
+
+
 const scientificAuthors = [
     {
         name: "Stephen Hawking",
@@ -44,7 +54,69 @@ const scientificAuthors = [
     }
 ];
 
-const usernames = ['juanarsuaga', 'carlsagan', 'yuvalNoah', 'richarddawkins', 'stevebrussatte']
+const usernames = [
+    'juanarsuaga',
+    'carlsagan',
+    'yuvalNoah',
+    'richarddawkins',
+    'stevebrussatte'
+];
+
+/* Para esto vamos a usar dos formas, mapas y listas. */
+
+
+
+// [x]: LISTAS
+
+function findAuthorsList(listInfo, listUsernames) {
+    listUsernames.forEach(username => {
+        listInfo.forEach(scientific => {
+            if (scientific.username === username) {
+                console.log(scientific.name);
+            }
+        })
+    });
+}
+
+
+// [x]: MAPAS
+
+/* 
+    Ahora bien, en este ejemplo, estamos buscando que no se itere en comparar cada uno de las
+    llaves hasta que coincidan, sino que guardar todas en un mapa, y después buscar
+    conforme al mapa como key, y así ya imprimiríamos los usuarios que tenemos en
+    ambas listas. Y no compara uno por uno.
+*/
+function findAuthors(list,usernames) {
+    // Creación de mapa
+    let mapaAutores = new Map();
+    list.forEach(author => {
+        // Creamos una llave de identificación conforme a una llave, la cual será 
+        // el identificador.
+        const usernameKey = author.username;
+        // Agregamos el objeto conforme a su llave.
+        mapaAutores.set(usernameKey, author);
+    });
+    
+    usernames.forEach(username => {
+        const userMatch = mapaAutores.get(username);
+        if (userMatch) {
+            console.log(userMatch.name);
+        }
+    });
+
+}
+
+console.time('Array Search');
+findAuthorsList(scientificAuthors, usernames);
+console.timeEnd('Array Search');
+
+console.log('_______________________________________');
+
+console.time('Map Search');
+findAuthors(scientificAuthors, usernames);
+console.timeEnd('Map Search');
+
 
 
 /* Al manejar un mapa creamos una key (identificador único), la cual nos ayuda a que se 
@@ -67,34 +139,3 @@ Mientras una lista, el tiempo crece conforme hay más elementos 0(n)
 ✔️ Map → acceso directo por clave → rápido (O(1))
 ❌ Array → búsqueda secuencial → más lento (O(n))
 */
-
-
-/* 
-    Ahora bien, en este ejemplo, estamos buscando que no se itere en comparar cada uno de las
-    llaves hasta que coincidan, sino que guardar todas en un mapa, y después buscar
-    conforme al mapa como key, y así ya imprimiríamos los usuarios que tenemos en
-    ambas listas. Y no compara uno por uno.
-*/
-
-
-function transformMap(list,usernames) {
-    // Creación de mapa
-    let mapaAutores = new Map();
-    list.forEach(author => {
-        // Creamos una llave de identificación conforme a una llave, la cual será 
-        // el identificador.
-        const usernameKey = author.username;
-        // Agregamos el objeto conforme a su llave.
-        mapaAutores.set(usernameKey, author);
-    });
-    
-    usernames.forEach(element => {
-        const userMatch = mapaAutores.get(element);
-        if (userMatch) {
-            console.log(userMatch.name);
-        }
-    });
-
-}
-
-transformMap(scientificAuthors, usernames);
