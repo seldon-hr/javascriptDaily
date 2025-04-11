@@ -1,4 +1,4 @@
-UPDATE COTIZACION SET ESTATUSFIRMA = 'Approved' WHERE FOLIO = 'zg4c0iujzm0m09h1fr4tgxzzuxn0x4gl';
+UPDATE COTIZACION SET ESTATUSFIRMA = 'Approved' WHERE FOLIO = 'mvjx1agx22vbhrn72noh4mpj5iriqbou';
 
 
 SELECT
