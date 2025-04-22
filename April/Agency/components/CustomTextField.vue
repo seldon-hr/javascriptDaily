@@ -14,6 +14,10 @@ export default {
       type: [String, Number, Array, Object],
       default: null,
     },
+    campo: {
+      type: Object,
+      default: () => {},
+    },
   },
   computed: {
     innerValue: {
@@ -26,8 +30,9 @@ export default {
     },
   },
   watch: {
-    value(newValue) {
-      console.log(newValue);
+    value() {
+      const valor = this.campo.value;
+      console.log(`Valor de ${this.campo.key}: ${valor}`);
     },
   },
 };

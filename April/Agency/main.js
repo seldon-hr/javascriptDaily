@@ -12,9 +12,9 @@ const store = new Vuex.Store({
   state: {
     contador: 0,
     listComponentes: [
-        { index: 1, value: "" },
-        { index: 2, value: "" },
-        { index: 3, value: "" },
+        { index: 1, key: "plazosPago", value: "" },
+        { index: 2, key: "color", value: "" },
+        { index: 3, key: "nombre", value: "" },
     ]
   },
   mutations: {
@@ -23,7 +23,7 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    updateListComponents(valor) {
+    updateListComponents({ state }, valor) {
         state.listComponentes = valor;
     }
   }

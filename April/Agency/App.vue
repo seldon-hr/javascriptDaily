@@ -7,6 +7,7 @@
         <custom-text-field
           v-for="(compound, index) in listComponentes"
           v-model="compound.value"
+          :campo="compound"
           :key="index"
         />
       </v-row>
