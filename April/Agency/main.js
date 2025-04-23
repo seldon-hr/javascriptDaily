@@ -123,11 +123,8 @@ const store = new Vuex.Store({
       commit('mutateMultiAgentesMap', multiAgentesMap )
       // Now you can access a specific multiAgente using: multiAgentesMap.get('plazosPago')
     },
-    findCampoAndReturn({ state }, targetCampo) {
-      let campo = state.listComponentes.find(compound => compound.key === targetCampo);
-      return campo;
-    },
-    detectarMultiAgente({ state }, campo) {
+   
+    detectarMultiAgente({ state, dispatch }, campo) {
       const agente = state.multiAgentesMap.get(campo.key);
       if (agente) {
         console.log(`Esto campo tiene un agente: ${agente}`);
@@ -154,9 +151,11 @@ const store = new Vuex.Store({
         }
       }
     },
-    /* comandoAsignarValor({ }, campo) {
-      
-    } */
+    comandoAsignarValor({ state }, consecuente) {
+      //Obtener campo a afectar
+      const campo = findCampoAndReturn(state.listComponentes, consecuente.source);
+      campo.value = consecuente.value;
+    }
   }
 });
 
@@ -167,3 +166,8 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount("#app");
+
+function findCampoAndReturn(listComponentes, targetCampo) {
+  let campo = listComponentes.find(compound => compound.key === targetCampo);
+  return campo;
+}

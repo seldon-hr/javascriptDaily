@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <h1>Prototipo de Vue</h1>
-      <v-btn @click="transformMultiAgentesToMap" />
+      <v-btn @click="transformMultiAgentesToMap"> Cargar MultiAgentes </v-btn>
       <v-divider />
       <v-row class="ma-3">
         <custom-text-field
