@@ -104,7 +104,7 @@ const store = new Vuex.Store({
     /**
      * Converts a list to a Map
      * @param {Array} list - Proviene del state
-     * @returns {Map} - Asigna un Mapa
+     * @returns {Map} - Asigna un Mapa a state
      */
     transformMultiAgentesToMap({ state, commit }) {
       //Filtrar multiAgentes para ser trabajados por los que se manejan por variableForm, solo para interacciones del escenario.
@@ -123,10 +123,36 @@ const store = new Vuex.Store({
       commit('mutateMultiAgentesMap', multiAgentesMap )
       // Now you can access a specific multiAgente using: multiAgentesMap.get('plazosPago')
     },
-
-
+    findCampoAndReturn({ state }, targetCampo) {
+      let campo = state.listComponentes.find(compound => compound.key === targetCampo);
+      return campo;
+    },
     detectarMultiAgente({ state }, campo) {
-      state.multiAgentesMap.get(campo.key);
+      const agente = state.multiAgentesMap.get(campo.key);
+      if (agente) {
+        console.log(`Esto campo tiene un agente: ${agente}`);
+
+        if (!agente.esMultipleCondicionante) {
+          /* Agentes con un solo condicionante */
+          console.log('Agent has single condition, value:', agente.esMultipleCondicionante);
+          if (agente) {
+            const esIgualValor = agente.condicionantes[0].targetValue == campo.value;
+            if (esIgualValor) {
+              //Ejecutar el comando del multiAgente:
+              //Ahora solo por uno, no por varios.
+              switch (agente.consecuentes[0].ccComando) {
+                case 101:
+                  dispatch('comandoAsignarValor', agente.consecuentes[0]);
+                  break;
+              }
+            } else {
+              console.log(`No se hizo, el valor no conincide, ${esIgualValor}`);
+            }
+          }
+        } else {
+          console.log('Agent has multiple conditions, value:', agente.esMultipleCondicionante);
+        }
+      }
     },
     /* comandoAsignarValor({ }, campo) {
       

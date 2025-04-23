@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "CustomTextField",
   props: {
@@ -29,10 +30,16 @@ export default {
       },
     },
   },
+  methods: {
+    ...mapActions({
+      detectarMultiAgente: "detectarMultiAgente",
+    }),
+  },
   watch: {
-    value() {
-      const valor = this.campo.value;
-      console.log(`Valor de ${this.campo.key}: ${valor}`);
+    value(value) {
+      this.campo.value = value;
+      console.log(`Valor de ${this.campo.key}: ${this.campo.value}`);
+      this.detectarMultiAgente(this.campo);
     },
   },
 };
