@@ -86,18 +86,51 @@ const store = new Vuex.Store({
       esMultipleConsecuente: false,
       auxValorComparacion: "modo_inicial"
     } */
-]
+    ],
+    multiAgentesMap: new Map(),
   },
   mutations: {
     increment(state) {
       state.contador++;
+    },
+    mutateMultiAgentesMap(state, entry) {
+      state.multiAgentesMap = entry;
     }
   },
   actions: {
     updateListComponents({ state }, valor) {
         state.listComponentes = valor;
-    }
-    
+    },
+    /**
+     * Converts a list to a Map
+     * @param {Array} list - Proviene del state
+     * @returns {Map} - Asigna un Mapa
+     */
+    transformMultiAgentesToMap({ state, commit }) {
+      //Filtrar multiAgentes para ser trabajados por los que se manejan por variableForm, solo para interacciones del escenario.
+      const listMultiAgentes = state.listMultiAgentes.filter(multiAgente => multiAgente.condicionantes[0].source == 'valueForm');
+      
+      const multiAgentesMap = new Map();
+      // Iteramos para agregar cada uno al mapa como llave. Esto solo funciona de momento para
+      // agentes con un solo condicionante.
+      listMultiAgentes.forEach(multiAgente => {
+        if (multiAgente.condicionantes.length > 0) {
+          const keyCondicionante = multiAgente.condicionantes[0].key;
+          multiAgentesMap.set(keyCondicionante, multiAgente);
+        }
+      });
+
+      commit('mutateMultiAgentesMap', multiAgentesMap )
+      // Now you can access a specific multiAgente using: multiAgentesMap.get('plazosPago')
+    },
+
+
+    detectarMultiAgente({ state }, campo) {
+      state.multiAgentesMap.get(campo.key);
+    },
+    /* comandoAsignarValor({ }, campo) {
+      
+    } */
   }
 });
 
