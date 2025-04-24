@@ -36,6 +36,7 @@ const store = new Vuex.Store({
       esMultipleCondicionante: false,
       consecuentes: [
         {
+          key:'variableForm',
           ccComando: 101,
           source: "nombre",
           value: 'Parthenope'
@@ -148,6 +149,7 @@ const store = new Vuex.Store({
           }
         } else {
           console.log('Agent has multiple conditions, value:', agente.esMultipleCondicionante);
+
         }
       }
     },
