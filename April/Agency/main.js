@@ -17,76 +17,90 @@ const store = new Vuex.Store({
         { index: 3, key: "nombre", value: "" },
     ],
     listMultiAgentes: [
-    {
-      id: 1,
-      condicionantes: [
-        {
-          key: "plazosPago",
-          source: "valueForm",
-          targetValue: 25,
-          isEqualAll: 0
-        },
-        /* {
-          key: "color",
-          source: "valueForm",
-          targetValue: "",
-          isEqualAll: 1
-        } */
-      ],
-      esMultipleCondicionante: false,
-      consecuentes: [
-        {
-          key:'variableForm',
-          ccComando: 101,
-          source: "nombre",
-          value: 'Parthenope'
-        }
-      ],
-      esMultipleConsecuente: false,
-      auxValorComparacion: ""
-    }
-    /*  {
-      id: 2,
-      condicionantes: [
-        {
-          key: "nivel_luz",
-          source: "sensor_luz_ambiente",
-          targetValue: {
-            min: 100,
-            max: 500
+      {
+        id: 1,
+        condicionantes: [
+          {
+            key: "plazosPago",
+            source: "valueForm",
+            targetValue: 25,
+            isEqualAll: 0
           },
-          isEqualAll: 0
-        }
-      ],
-      esMultipleCondicionante: false,
-      consecuentes: [
-        {
-          ccComando: 205,
-          source: "persiana_norte",
-          value: "SUBIR"
-        },
-        {
-          ccComando: 206,
-          source: "luz_escritorio",
-          value: 75
-        },
-        {
+          /* {
+            key: "color",
+            source: "valueForm",
+            targetValue: "",
+            isEqualAll: 1
+          } */
+        ],
+        esMultipleCondicionante: false,
+        consecuentes: [
+          {
+            key:'variableForm',
+            ccComando: 101,
+            source: "nombre",
+            value: 'Parthenope'
+          }
+        ],
+        esMultipleConsecuente: false,
+        auxValorComparacion: ""
+      },
+      {
+        id: 2,
+        condicionantes: [
+          {
+            key: "plazosPago",
+            source: "valueForm",
+            targetValue: 'hola',
+            isEqualAll: 0,
+          }
+        ],
+        esMultipleCondicionante: false,
+        consecuentes: [
+          {
+            key:'variableForm',
+            ccComando: 101,
+            source: "color",
+            value: "SUBIR"
+          },
+          {
+            key:'variableForm',
+            ccComando: 101,
+            source: "nombre",
+            value: 75
+          },
+          /* {
+            key:'variableForm',
             ccComando: 207,
             source: "sistema_alarma",
             value: { armado: true, modo: "nocturno" }
-        }
-      ],
-      esMultipleConsecuente: true,
-      auxValorComparacion: ""
-    },
-    {
-      id: 3,
-      condicionantes: [],
-      esMultipleCondicionante: true,
-      consecuentes: [],
-      esMultipleConsecuente: false,
-      auxValorComparacion: "modo_inicial"
-    } */
+          } */
+        ],
+        esMultipleConsecuente: true,
+        auxValorComparacion: ""
+      },
+      {
+        id: 3,
+        condicionantes: [
+          {
+            key: "plazosPago",
+            source: "valueForm",
+            targetValue: 'hola',
+            isEqualAll: 0,
+          }
+        ],
+        esMultipleCondicionante: false,
+        consecuentes: [
+          {
+            key:'variableForm',
+            ccComando: 101,
+            source: "nombre",
+            value: { armado: true, modo: "light" }
+          }
+        ],
+        esMultipleConsecuente: false,
+        auxValorComparacion: "modo_inicial"
+      }
     ],
     multiAgentesMap: new Map(),
   },
