@@ -1,0 +1,77 @@
+ [
+    {
+        "id": 1,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": 25,
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": "Parthenope"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 2,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": "hola",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "color",
+                "value": "SUBIR"
+            },
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": 75
+            }
+        ],
+        "esMultipleConsecuente": true,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 3,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": "hola",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": {
+                    "armado": true,
+                    "modo": "light"
+                }
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": "modo_inicial"
+    }
+]
