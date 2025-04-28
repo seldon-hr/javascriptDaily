@@ -55,7 +55,7 @@
             {
                 "key": "plazosPago",
                 "source": "valueForm",
-                "targetValue": "hola",
+                "targetValue": "hey",
                 "isEqualAll": 0
             }
         ],
@@ -75,7 +75,7 @@
         "auxValorComparacion": "modo_inicial"
     },
     {
-        "id": 1,
+        "id": 4,
         "condicionantes": [
             {
                 "key": "color",
@@ -90,6 +90,28 @@
                 "key": "variableForm",
                 "ccComando": 101,
                 "source": "nombre",
+                "value": "El color es Azul!"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 5,
+        "condicionantes": [
+            {
+                "key": "nombre",
+                "source": "valueForm",
+                "targetValue": 75,
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "resultadoFinal",
+                "ccComando": 101,
+                "source": "resultadoFinal",
                 "value": "El color es Azul!"
             }
         ],
