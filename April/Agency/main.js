@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import Vuetify from "vuetify";
 import App from "./App.vue";
 
+
 // Usa los plugins
 Vue.use(Vuex);
 Vue.use(Vuetify);
@@ -16,92 +17,7 @@ const store = new Vuex.Store({
         { index: 2, key: "color", value: "" },
         { index: 3, key: "nombre", value: "" },
     ],
-    listMultiAgentes: [
-      {
-        id: 1,
-        condicionantes: [
-          {
-            key: "plazosPago",
-            source: "valueForm",
-            targetValue: 25,
-            isEqualAll: 0
-          },
-          /* {
-            key: "color",
-            source: "valueForm",
-            targetValue: "",
-            isEqualAll: 1
-          } */
-        ],
-        esMultipleCondicionante: false,
-        consecuentes: [
-          {
-            key:'variableForm',
-            ccComando: 101,
-            source: "nombre",
-            value: 'Parthenope'
-          }
-        ],
-        esMultipleConsecuente: false,
-        auxValorComparacion: ""
-      },
-      {
-        id: 2,
-        condicionantes: [
-          {
-            key: "plazosPago",
-            source: "valueForm",
-            targetValue: 'hola',
-            isEqualAll: 0,
-          }
-        ],
-        esMultipleCondicionante: false,
-        consecuentes: [
-          {
-            key:'variableForm',
-            ccComando: 101,
-            source: "color",
-            value: "SUBIR"
-          },
-          {
-            key:'variableForm',
-            ccComando: 101,
-            source: "nombre",
-            value: 75
-          },
-          /* {
-            key:'variableForm',
-            ccComando: 207,
-            source: "sistema_alarma",
-            value: { armado: true, modo: "nocturno" }
-          } */
-        ],
-        esMultipleConsecuente: true,
-        auxValorComparacion: ""
-      },
-      {
-        id: 3,
-        condicionantes: [
-          {
-            key: "plazosPago",
-            source: "valueForm",
-            targetValue: 'hola',
-            isEqualAll: 0,
-          }
-        ],
-        esMultipleCondicionante: false,
-        consecuentes: [
-          {
-            key:'variableForm',
-            ccComando: 101,
-            source: "nombre",
-            value: { armado: true, modo: "light" }
-          }
-        ],
-        esMultipleConsecuente: false,
-        auxValorComparacion: "modo_inicial"
-      }
-    ],
+    listMultiAgentes: [],
     multiAgentesMap: new Map(),
   },
   mutations: {
@@ -110,12 +26,39 @@ const store = new Vuex.Store({
     },
     mutateMultiAgentesMap(state, entry) {
       state.multiAgentesMap = entry;
-    }
+    },
+    mutateListMultiAgentes(state, entry) {
+      state.listMultiAgentes = entry;
+    },
   },
   actions: {
     updateListComponents({ state }, valor) {
         state.listComponentes = valor;
     },
+
+    async cargarMultiAgentes({ commit, dispatch }) {
+      await fetch('./prototypesLists/listMultipleMultiAgentesOneCampo.json')
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              // Si el JSON tiene estructura con propiedad nombrada
+              const multiAgentes = data.multiAgentes || data;
+              
+              console.log('Multi-agentes cargados:', multiAgentes);
+              commit('mutateListMultiAgentes', multiAgentes);
+            })
+            .catch(error => {
+              console.error('Error al cargar los multi-agentes:', error);
+            });
+      
+      //Transformar MultiAgentes a un mapa
+      dispatch('transformMultiAgentesToMap');
+    },
+
     /**
      * Converts a list to a Map
      * @param {Array} list - Proviene del state

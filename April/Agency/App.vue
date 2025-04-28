@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <h1>Prototipo de Vue</h1>
-      <v-btn @click="transformMultiAgentesToMap"> Cargar MultiAgentes </v-btn>
+      <v-btn @click="cargarMultiAgentes"> Cargar MultiAgentes </v-btn>
       <v-divider />
       <v-row class="ma-3">
         <custom-text-field
@@ -37,7 +37,7 @@ export default {
     ...mapActions({
       updateListComponents: "updateListComponents",
       detectarMultiAgente: "detectarMultiAgente",
-      transformMultiAgentesToMap: "transformMultiAgentesToMap",
+      cargarMultiAgentes: "cargarMultiAgentes",
     }),
     /*     incrementar() {
       this.$store.commit("increment");
