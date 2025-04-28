@@ -60,26 +60,69 @@ const store = new Vuex.Store({
     },
 
     /**
-     * Converts a list to a Map
+     * Transforma la lista de multiAgentes en estructuras optimizadas para búsqueda
      * @param {Array} list - Proviene del state
-     * @returns {Map} - Asigna un Mapa a state
+     * @returns {Map, Array} - Mapas y listas para diferentes tipos de agentes
      */
     transformMultiAgentesToMap({ state, commit }) {
-      //Filtrar multiAgentes para ser trabajados por los que se manejan por variableForm, solo para interacciones del escenario.
-      const listMultiAgentes = state.listMultiAgentes.filter(multiAgente => multiAgente.condicionantes[0].source == 'valueForm');
+      // Filtrar multiAgentes para ser trabajados por los que se manejan por variableForm
+      const listMultiAgentes = state.listMultiAgentes.filter(
+        multiAgente => multiAgente.condicionantes[0].source == 'valueForm'
+      );
       
+      // Mapa para los agentes con condicionante único (no compartido)
       const multiAgentesMap = new Map();
-      // Iteramos para agregar cada uno al mapa como llave. Esto solo funciona de momento para
-      // agentes con un solo condicionante.
+      // Mapa para agrupar agentes por key (para los que comparten keys)
+      const keyToAgentsMap = new Map();
+
+      
+      // Primero agrupamos los agentes por sus keys para identificar duplicados
       listMultiAgentes.forEach(multiAgente => {
         if (multiAgente.condicionantes.length > 0) {
           const keyCondicionante = multiAgente.condicionantes[0].key;
-          multiAgentesMap.set(keyCondicionante, multiAgente);
+          
+          // Si esta key ya existe en el mapa, agregamos este agente a su lista
+          if (keyToAgentsMap.has(keyCondicionante)) {
+            //donde push lo esta agregando a su valor de la key.
+            keyToAgentsMap.get(keyCondicionante).push(multiAgente);
+          } else {
+            // Si no existe, creamos una nueva lista con este agente
+            keyToAgentsMap.set(keyCondicionante, [multiAgente]);
+          }
         }
       });
-
-      commit('mutateMultiAgentesMap', multiAgentesMap )
-      // Now you can access a specific multiAgente using: multiAgentesMap.get('plazosPago')
+      
+      // Arrays para almacenar los agentes según su categoría
+      const agentesUnicos = [];
+      const agentesCompartidos = [];
+      
+      // Recorremos el mapa de keys para clasificar los agentes
+      keyToAgentsMap.forEach((agents, key) => {
+        if (agents.length === 1) {
+          // Si solo hay un agente para esta key, es único
+          agentesUnicos.push(agents[0]);
+          // También lo agregamos al mapa original para búsqueda rápida
+          multiAgentesMap.set(key, agents[0]);
+        } else {
+          // Si hay múltiples agentes para esta key, son compartidos
+          agents.forEach(agent => {
+            agentesCompartidos.push(agent);
+          });
+          
+          // También agregamos la lista completa al mapa para esta key
+          multiAgentesMap.set(key, agents);
+        }
+      });
+      
+      console.log('Agentes únicos:', agentesUnicos.length);
+      console.log('Agentes compartidos:', agentesCompartidos.length);
+      
+      // Guardamos el mapa resultante en el estado
+      commit('mutateMultiAgentesMap', multiAgentesMap);
+      
+      // También podríamos guardar las listas separadas si se necesitan
+      // commit('mutateAgentesUnicos', agentesUnicos);
+      // commit('mutateAgentesCompartidos', agentesCompartidos);
     },
    
     detectarMultiAgente({ state, dispatch }, campo) {
