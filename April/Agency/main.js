@@ -16,6 +16,7 @@ const store = new Vuex.Store({
         { index: 1, key: "plazosPago", value: "" },
         { index: 2, key: "color", value: "" },
         { index: 3, key: "nombre", value: "" },
+        { index: 4, key: "resultadoFinal", value: "" },
     ],
     listMultiAgentes: [],
     multiAgentesMap: new Map(),
@@ -128,35 +129,30 @@ const store = new Vuex.Store({
     detectarMultiAgente({ state, dispatch }, campo) {
       const agente = state.multiAgentesMap.get(campo.key);
       if (agente) {
-        console.log(`Esto campo tiene un agente: ${agente}`);
 
-        if (!agente.esMultipleCondicionante) {
-          /* Agentes con un solo condicionante */
-          console.log('Agent has single condition, value:', agente.esMultipleCondicionante);
-          if (agente) {
-            const esIgualValor = agente.condicionantes[0].targetValue == campo.value;
-            if (esIgualValor) {
-              //Ejecutar el comando del multiAgente:
-              //Ahora solo por uno, no por varios.
-              switch (agente.consecuentes[0].ccComando) {
-                case 101:
-                  dispatch('comandoAsignarValor', agente.consecuentes[0]);
-                  break;
-              }
-            } else {
-              console.log(`No se hizo, el valor no conincide, ${esIgualValor}`);
-            }
-          }
+        //El agente puedes es único(Objecto) o puede ser compartido(Array).
+        const agenteEsCompartido = Array.isArray(agente);;
+        if (agenteEsCompartido) {
+          console.log(`Este campo tiene ${agente.length} agentes compartidos`);
+          //Procesar cada agente del resultado:
+          agente.forEach(agente => {
+            procesarAgente(agente, campo, dispatch, state);
+          });
         } else {
-          console.log('Agent has multiple conditions, value:', agente.esMultipleCondicionante);
-
+          console.log(`Esto campo tiene un agente: ${agente}`);
+          procesarAgente(agente, campo, dispatch, state);
         }
-      }
+      }  
     },
+    
     comandoAsignarValor({ state }, consecuente) {
       //Obtener campo a afectar
       const campo = findCampoAndReturn(state.listComponentes, consecuente.source);
-      campo.value = consecuente.value;
+        if (campo) {
+        campo.value = consecuente.value; 
+      } else {
+        console.log(`Campo no encontrado: ${consecuente.source}`);
+      }
     }
   }
 });
@@ -173,3 +169,63 @@ function findCampoAndReturn(listComponentes, targetCampo) {
   let campo = listComponentes.find(compound => compound.key === targetCampo);
   return campo;
 }
+
+function ejecutarComando(consecuente, dispatch) {
+  switch (consecuente.ccComando) {
+    case 101:
+      dispatch('comandoAsignarValor', consecuente);
+      break;
+    // Aquí puedes agregar más casos según necesites
+    default:
+      console.log(`Comando no reconocido: ${consecuente.ccComando}`);
+  }
+}
+
+function procesarAgente(agente, campo, dispatch, state) {
+      if (!agente.esMultipleCondicionante) {
+        /* Agentes con un solo condicionante */
+        console.log('Agente con condición simple, valor:', campo.value);
+        
+        const esIgualValor = agente.condicionantes[0].targetValue == campo.value;
+        if (esIgualValor) {
+          // Ejecutar el(los) comando(s) del agente
+          if (agente.esMultipleConsecuente) {
+            // Si tiene múltiples consecuentes, los ejecutamos todos
+            agente.consecuentes.forEach(consecuente => {
+              ejecutarComando(consecuente, dispatch);
+            });
+          } else {
+            // Solo tiene un consecuente
+            ejecutarComando(agente.consecuentes[0], dispatch);
+          }
+        } else {
+          console.log(`------> No se ejecutó, el valor no coincide: ${campo.value} != ${agente.condicionantes[0].targetValue}`, '\n Esta línea aparece después de haber corroborado cada uno de los valores posibles hasta el primero que haga match.');
+        }
+      }
+      //  else {
+      //   /* Agentes con múltiples condicionantes */
+      //   console.log('Agente con múltiples condiciones');
+        
+      //   // Verificar que todas las condiciones se cumplan
+      //   const todasLasCondicionesCumplidas = agente.condicionantes.every(condicion => {
+      //     // Buscar el campo correspondiente en listComponentes
+      //     const campoCorrespondiente = state.listComponentes.find(c => c.key === condicion.key);
+      //     // Verificar si existe y si su valor coincide con el target
+      //     return campoCorrespondiente && campoCorrespondiente.value == condicion.targetValue;
+      //   });
+        
+      //   if (todasLasCondicionesCumplidas) {
+      //     console.log('Todas las condiciones se cumplen, ejecutando consecuentes');
+      //     // Ejecutar consecuentes
+      //     if (agente.esMultipleConsecuente) {
+      //       agente.consecuentes.forEach(consecuente => {
+      //         ejecutarComando(consecuente, dispatch);
+      //       });
+      //     } else {
+      //       ejecutarComando(agente.consecuentes[0], dispatch);
+      //     }
+      //   } else {
+      //     console.log('No todas las condiciones se cumplen');
+      //   }
+      // }
+    }
