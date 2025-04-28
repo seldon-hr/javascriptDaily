@@ -198,10 +198,14 @@ function procesarAgente(agente, campo, dispatch, state) {
             // Solo tiene un consecuente
             ejecutarComando(agente.consecuentes[0], dispatch);
           }
-        } else {
+        } /* else {
           console.log(`------> No se ejecutó, el valor no coincide: ${campo.value} != ${agente.condicionantes[0].targetValue}`, '\n Esta línea aparece después de haber corroborado cada uno de los valores posibles hasta el primero que haga match.');
-        }
+        } */
       }
+      //TODO: Para poder correr lo múltiples condicionantes, primero hay que asginar todos como condicionantes disponibles.
+      /* 
+        Llamar desde múltiples llaves al mismo agentes, como en mapsSeveralKeys.js
+      */
       //  else {
       //   /* Agentes con múltiples condicionantes */
       //   console.log('Agente con múltiples condiciones');
