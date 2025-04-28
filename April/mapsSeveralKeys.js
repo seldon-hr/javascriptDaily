@@ -32,7 +32,7 @@ class MultiKeyMap {
 }
 
 const mkMap = new MultiKeyMap();
-mkMap.set(['mario', 'supermario', 'mario123'], { level: 99 });
+mkMap.set(['plazosPago', 'color', 'institucion'], { level: 99 });
 
-console.log(mkMap.get('supermario')); // { level: 99 }
-console.log(mkMap.get('mario123'));   // { level: 99 }
+console.log(mkMap.get('plazosPago')); // { level: 99 }
+console.log(mkMap.get('institucion'));   // { level: 99 }
