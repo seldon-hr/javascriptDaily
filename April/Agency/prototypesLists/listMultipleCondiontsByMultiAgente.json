@@ -1,0 +1,127 @@
+ [
+    {
+        "id": 1,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": 25,
+                "isEqualAll": 0
+            },
+            {
+                "key": "color",
+                "source": "valueForm",
+                "targetValue": "pan",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": true,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": "Parthenope"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 2,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": "hola",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "color",
+                "value": "SUBIR"
+            },
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": 75
+            }
+        ],
+        "esMultipleConsecuente": true,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 3,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": "hey",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": {
+                    "armado": true,
+                    "modo": "light"
+                }
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": "modo_inicial"
+    },
+    {
+        "id": 4,
+        "condicionantes": [
+            {
+                "key": "color",
+                "source": "valueForm",
+                "targetValue": "azul",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": "El color es Azul!"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 5,
+        "condicionantes": [
+            {
+                "key": "nombre",
+                "source": "valueForm",
+                "targetValue": 75,
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "resultadoFinal",
+                "ccComando": 101,
+                "source": "resultadoFinal",
+                "value": "El color es Azul!"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    }
+]
