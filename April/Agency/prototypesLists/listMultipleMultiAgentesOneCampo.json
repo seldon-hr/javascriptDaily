@@ -84,7 +84,7 @@
         "id": 4,
         "condicionantes": [
             {
-                "key": "color",
+                "key": "resultadoFinal",
                 "source": "valueForm",
                 "targetValue": "azul",
                 "isEqualAll": 0

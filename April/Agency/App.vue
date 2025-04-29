@@ -3,6 +3,7 @@
     <v-container>
       <h1>Prototipo de Vue</h1>
       <v-btn @click="cargarMultiAgentes"> Cargar MultiAgentes </v-btn>
+      <v-btn @click="refreshPage"> Refresh </v-btn>
       <v-divider />
       <v-row class="ma-3">
         <custom-text-field
@@ -39,6 +40,9 @@ export default {
       detectarMultiAgente: "detectarMultiAgente",
       cargarMultiAgentes: "cargarMultiAgentes",
     }),
+    refreshPage() {
+      window.location.reload();
+    },
     /*     incrementar() {
       this.$store.commit("increment");
     }, */
