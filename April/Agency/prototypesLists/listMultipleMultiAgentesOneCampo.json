@@ -7,9 +7,15 @@
                 "source": "valueForm",
                 "targetValue": 25,
                 "isEqualAll": 0
+            },
+            {
+                "key": "color",
+                "source": "valueForm",
+                "targetValue": "help",
+                "isEqualAll": 0
             }
         ],
-        "esMultipleCondicionante": false,
+        "esMultipleCondicionante": true,
         "consecuentes": [
             {
                 "key": "variableForm",

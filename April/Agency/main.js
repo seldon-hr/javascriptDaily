@@ -206,30 +206,30 @@ function procesarAgente(agente, campo, dispatch, state) {
       /* 
         Llamar desde múltiples llaves al mismo agentes, como en mapsSeveralKeys.js
       */
-      //  else {
-      //   /* Agentes con múltiples condicionantes */
-      //   console.log('Agente con múltiples condiciones');
+       else {
+        /* Agentes con múltiples condicionantes */
+        console.log('Agente con múltiples condiciones');
         
-      //   // Verificar que todas las condiciones se cumplan
-      //   const todasLasCondicionesCumplidas = agente.condicionantes.every(condicion => {
-      //     // Buscar el campo correspondiente en listComponentes
-      //     const campoCorrespondiente = state.listComponentes.find(c => c.key === condicion.key);
-      //     // Verificar si existe y si su valor coincide con el target
-      //     return campoCorrespondiente && campoCorrespondiente.value == condicion.targetValue;
-      //   });
+        // Verificar que todas las condiciones se cumplan
+        const todasLasCondicionesCumplidas = agente.condicionantes.every(condicion => {
+          // Buscar el campo correspondiente en listComponentes
+          const campoCorrespondiente = state.listComponentes.find(c => c.key === condicion.key);
+          // Verificar si existe y si su valor coincide con el target
+          return campoCorrespondiente && campoCorrespondiente.value == condicion.targetValue;
+        });
         
-      //   if (todasLasCondicionesCumplidas) {
-      //     console.log('Todas las condiciones se cumplen, ejecutando consecuentes');
-      //     // Ejecutar consecuentes
-      //     if (agente.esMultipleConsecuente) {
-      //       agente.consecuentes.forEach(consecuente => {
-      //         ejecutarComando(consecuente, dispatch);
-      //       });
-      //     } else {
-      //       ejecutarComando(agente.consecuentes[0], dispatch);
-      //     }
-      //   } else {
-      //     console.log('No todas las condiciones se cumplen');
-      //   }
-      // }
+        if (todasLasCondicionesCumplidas) {
+          console.log('Todas las condiciones se cumplen, ejecutando consecuentes');
+          // Ejecutar consecuentes
+          if (agente.esMultipleConsecuente) {
+            agente.consecuentes.forEach(consecuente => {
+              ejecutarComando(consecuente, dispatch);
+            });
+          } else {
+            ejecutarComando(agente.consecuentes[0], dispatch);
+          }
+        } else {
+          console.log('No todas las condiciones se cumplen');
+        }
+      }
     }
