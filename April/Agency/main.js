@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import Vuetify from "vuetify";
 import App from "./App.vue";
 
+import MapaMultipleCondicionesAgentes from "./Class/MapaMultiplesCondicionesAgentes";
+
 
 // Usa los plugins
 Vue.use(Vuex);
@@ -19,7 +21,7 @@ const store = new Vuex.Store({
         { index: 4, key: "resultadoFinal", value: "" },
     ],
     listMultiAgentes: [],
-    multiAgentesMap: new Map(),
+    multiAgentesMap: new MapaMultipleCondicionesAgentes(),
   },
   mutations: {
     increment(state) {
@@ -72,7 +74,7 @@ const store = new Vuex.Store({
       );
       
       // Mapa para los agentes con condicionante único (no compartido)
-      const multiAgentesMap = new Map();
+      const multiAgentesMap = new MapaMultipleCondicionesAgentes();
       // Mapa para agrupar agentes por key (para los que comparten keys)
       const keyToAgentsMap = new Map();
 
@@ -97,27 +99,35 @@ const store = new Vuex.Store({
       const agentesUnicos = [];
       const agentesCompartidos = [];
       
-      // Recorremos el mapa de keys para clasificar los agentes
       keyToAgentsMap.forEach((agents, key) => {
         if (agents.length === 1) {
-          // Si solo hay un agente para esta key, es único
-          agentesUnicos.push(agents[0]);
-          // También lo agregamos al mapa original para búsqueda rápida
-          multiAgentesMap.set(key, agents[0]);
+          const agent = agents[0];
+          agentesUnicos.push(agent);
+          // si tiene múltiples condicionantes, extraemos todas sus keys
+          if (agent.esMultipleCondicionante) {
+            const keys = agent.condicionantes.map(c => c.key);
+            multiAgentesMap.set(keys, agent);
+          } else {
+            multiAgentesMap.set([key], agent);
+          }
         } else {
-          // Si hay múltiples agentes para esta key, son compartidos
+          // varios agentes para esta key
+          agentesCompartidos.push(...agents);
+          // por si alguno tiene múltiples condicionantes, lo registramos individual
           agents.forEach(agent => {
-            agentesCompartidos.push(agent);
+            if (agent.esMultipleCondicionante) {
+              const keys = agent.condicionantes.map(c => c.key);
+              multiAgentesMap.set(keys, agent);
+            }
           });
-          
-          // También agregamos la lista completa al mapa para esta key
-          multiAgentesMap.set(key, agents);
+          // además agrupamos todo el array bajo la key original
+          multiAgentesMap.set([key], agents);
         }
       });
-      
+
       console.log('Agentes únicos:', agentesUnicos.length);
       console.log('Agentes compartidos:', agentesCompartidos.length);
-      
+
       // Guardamos el mapa resultante en el estado
       commit('mutateMultiAgentesMap', multiAgentesMap);
       
