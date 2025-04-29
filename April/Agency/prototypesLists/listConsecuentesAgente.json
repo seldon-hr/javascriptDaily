@@ -1,0 +1,141 @@
+ [
+    {
+        "id": 1,
+        "condicionantes": [
+            {
+                "key": "nombreAsegurado",
+                "source": "valueForm",
+                "targetValue": "Alda Jocelyn",
+                "isEqualAll": 0,
+                "configuracionFormularioId": 153
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "apellidoPatAsegurado",
+                "ccComando": 2,
+                "source": "variableForm",
+                "value": "Rojo",
+                "configuracionFormularioId": 153
+            },
+            {
+                "key": "ccPlazoPago",
+                "ccComando": 2,
+                "source": "variableForm",
+                "value": {
+                    "fechaRegistro":"2023-09-25 11:24:58",
+                    "clave":"004",
+                    "nombre":"Mensual",
+                    "periodo":12,
+                    "esActivo":1,
+                    "subRamo":"SALUD",
+                    "check":false,
+                    "plantillaId":0,
+                    "eliminar":0,
+                    "id":57
+                },
+                "configuracionFormularioId": 154
+            }
+        ],
+        "esMultipleConsecuente": true,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 2,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": "hola",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "color",
+                "value": "SUBIR"
+            },
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": 75
+            }
+        ],
+        "esMultipleConsecuente": true,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 3,
+        "condicionantes": [
+            {
+                "key": "plazosPago",
+                "source": "valueForm",
+                "targetValue": "hey",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": {
+                    "armado": true,
+                    "modo": "light"
+                }
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": "modo_inicial"
+    },
+    {
+        "id": 4,
+        "condicionantes": [
+            {
+                "key": "color",
+                "source": "valueForm",
+                "targetValue": "azul",
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "variableForm",
+                "ccComando": 101,
+                "source": "nombre",
+                "value": "El color es Azul!"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    },
+    {
+        "id": 5,
+        "condicionantes": [
+            {
+                "key": "nombre",
+                "source": "valueForm",
+                "targetValue": 75,
+                "isEqualAll": 0
+            }
+        ],
+        "esMultipleCondicionante": false,
+        "consecuentes": [
+            {
+                "key": "resultadoFinal",
+                "ccComando": 101,
+                "source": "resultadoFinal",
+                "value": "El color es Azul!"
+            }
+        ],
+        "esMultipleConsecuente": false,
+        "auxValorComparacion": ""
+    }
+]
