@@ -265,3 +265,79 @@ function procesarAgente(agente, campo, dispatch, state) {
         }
       }
     }
+
+
+
+
+
+
+
+
+function compararValoresCampoCondicionante(campo, condicionante) {
+  // Si es “igual a cualquiera”, devolvemos true
+  if (condicionante.isEqualAll) {
+    return true;
+  }
+
+  const valCampo = campo.valor;
+  const valorCondicionante = condicionante.value;
+  const tipoCampo = typeof valCampo;
+  const tipoCondicionante = typeof valorCondicionante;
+
+  // Si los tipos coinciden procedemos a comparar
+  if (tipoCampo === tipoCondicionante) {
+    switch (tipoCampo) {
+      case 'boolean':
+      case 'number':
+        return valCampo === valorCondicionante;
+        
+      case 'string':
+        //String vació siempre false
+        if (valCampo === "" || valorCondicionante === "") {
+          return false;
+        } else {
+          return valCampo === valorCondicionante;
+        }
+
+      case 'undefined':
+        return false;
+
+      case 'object':
+        // null siempre false
+        if (valCampo === null || valorCondicionante === null) {
+          return false;
+        }
+        // Array
+        if (Array.isArray(valCampo) && Array.isArray(valorCondicionante)) {
+          if (valCampo.length !== valorCondicionante.length) return false;
+          return valCampo.every((el, i) => el === valorCondicionante[i]);
+        }
+        // Object: Comparar con la propiedad nombre. Casos generales:
+        return valCampo.nombre === valorCondicionante;
+
+      //Casos execpción, como descripción(autos), estado, ccEstado.
+
+
+      /* 
+      // Objeto plano (incluye comparación de arrays internos)
+      const keysA = Object.keys(valCampo);
+      const keysB = Object.keys(valorCondicionante);
+      // Diferente cantidad de propiedades
+      if (keysA.length !== keysB.length) return false; 
+
+
+      return keysA.every(key => {
+          if (!valorCondicionante.hasOwnProperty(key)) return false;
+          const v1 = valCampo[key];
+          const v2 = valorCondicionante[key];
+          // Si la propiedad es un array, comparamos elemento a elemento
+          if (Array.isArray(v1) && Array.isArray(v2)) {
+              if (v1.length !== v2.length) return false;
+              return v1.every((item, idx) => item === v2[idx]);
+          }
+          // Resto de valores con igualdad estricta
+          return v1 === v2;
+      }); */
+    }
+  }
+}
