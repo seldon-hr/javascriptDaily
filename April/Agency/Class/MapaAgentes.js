@@ -6,7 +6,7 @@ export default class MapaAgentes {
 
   /**
    * Asigna un array de Keys a un value(Agente)
-   * @param {Array} list
+   * @param {Array, Object} list, Agente
    */
   set(keys, value) {
     /* Tomamos una key principal (mainKey) como llave del agente y esta se asigna como key y value(Agente) */
