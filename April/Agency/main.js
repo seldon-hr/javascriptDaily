@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import Vuetify from "vuetify";
 import App from "./App.vue";
 
-import MapaMultipleCondicionesAgentes from "./Class/MapaMultiplesCondicionesAgentes";
+import MapaAgentes from "./Class/MapaAgentes";
 
 
 // Usa los plugins
@@ -21,7 +21,7 @@ const store = new Vuex.Store({
         { index: 4, key: "resultadoFinal", value: "" },
     ],
     listMultiAgentes: [],
-    multiAgentesMap: new MapaMultipleCondicionesAgentes(),
+    multiAgentesMap: new MapaAgentes(),
   },
   mutations: {
     increment(state) {
@@ -74,7 +74,7 @@ const store = new Vuex.Store({
       );
       
       // Mapa para los agentes con condicionante único (no compartido)
-      const multiAgentesMap = new MapaMultipleCondicionesAgentes();
+      const multiAgentesMap = new MapaAgentes();
       /* 
       Mapa para agrupar agentes por key (para los que comparten keys)
       En este se guardan momentanemente los agentes por llave.
@@ -157,6 +157,8 @@ const store = new Vuex.Store({
     },
    
     detectarMultiAgente({ state, dispatch }, campo) {
+      /* Mandamos campo.key y nos devolvera un Agente si este campo tiene
+         agentes configurados. */
       const agente = state.multiAgentesMap.get(campo.key);
       if (agente) {
 
