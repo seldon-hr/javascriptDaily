@@ -1,0 +1,218 @@
+[
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"claveAgente",
+      "descripcion":"Clave del agente",
+      "esActivo":1,
+      "valor":"00490",
+      "ruta":"datosGenerales",
+      "id":1
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"ccPlazoPago",
+      "descripcion":"Forzar valor del campo de forma de pago",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":2
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"descuento",
+      "descripcion":"Descuento al cotizar",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":3
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"ccInstrumentosPago",
+      "descripcion":"Forzar las formas de pago según condiciones del negocio",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":4
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"tipoVehiculo",
+      "descripcion":"Forzar que solo aparezca fronterizo o regularizado",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":5
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"recargo",
+      "descripcion":"Junto a fplazo carga la forma de pago según condición del negocio",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":6
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"gastosEmision",
+      "descripcion":"Forzar datos de gastos de emisión",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":7
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"forzarDeducibleCobExt",
+      "descripcion":"Forzar deducible de la cobertura extensión de deducible",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":8
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"ccPlazoPago",
+      "descripcion":"Para excluir un plazo de pago. Ejemplo, que no aparezca quincenal.",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":9
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"saSeminuevos",
+      "descripcion":"Activar para que en seminuevos se pueda ingresar la suma asegurad en portal (solo agencias)",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":10
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"codigoZonaEspecifico",
+      "descripcion":"Forzar un código de zona en especifico",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":11
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"precioPoliza",
+      "descripcion":"Precio de póliza no hay interacción directa en el portal, es por bash.",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":12
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"forzarSaCobComplem",
+      "descripcion":"Forzar la suma asegurada de la cobertura complementaria ",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":13
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"forzarRecargo",
+      "descripcion":"forzar el recargo",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":14
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"cobRoboParcialDefault",
+      "descripcion":"Por default haga el cálculo el sistema de la cobertura por robo parcial de manera automática",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":15
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"roboTotalDeducible",
+      "descripcion":"Forzar deducible de la cobertura robo total",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":16
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"uso",
+      "descripcion":"Se forzar el código de uso (comercial, particular, etc.)",
+      "esActivo":1,
+      "valor":null,
+      "ruta":"datosVehiculo",
+      "id":17
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"formatoValorComercial",
+      "descripcion":"Mandar formato de impresión de valor comercial",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":18
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"webServiceCategoriaUnidades",
+      "descripcion":"Forzar categoría de unidades para que aparezcan solo ciertas categorías",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":19
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"webServiceModeloUnidades",
+      "descripcion":"Forzar modelo de unidades para que aparezcan solo ciertos modelos",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":20
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"webServiceTipoUnidades",
+      "descripcion":"Forzar tipo de unidades para que aparezcan solo ciertos tipos de unidades.",
+      "esActivo":1,
+      "valor":null,
+      "ruta":null,
+      "id":21
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"ccCategoria",
+      "descripcion":"Forzar categoria de vehiuclos para que aparezcan solo ciertas categorias.",
+      "esActivo":1,
+      "valor":null,
+      "ruta":"ccTarifa",
+      "id":22
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"cargaPeligrosa",
+      "descripcion":"Determinar si la carga es peligrosa o no",
+      "esActivo":1,
+      "valor":null,
+      "ruta":"datosVehiculo",
+      "id":23
+   },
+   {
+      "fechaRegistro":"2023-08-21 10:47:23",
+      "nombre":"dCodigo",
+      "descripcion":"Determinar el cp para cotizar",
+      "esActivo":1,
+      "valor":null,
+      "ruta":"datosAsegurado",
+      "id":24
+   }
+]
