@@ -73,8 +73,6 @@ const store = new Vuex.Store({
         multiAgente => multiAgente.condicionantes[0].source == 'valueForm'
       );
       
-      // Mapa para los agentes con condicionante único (no compartido)
-      const multiAgentesMap = new MapaAgentes();
       /* 
       Mapa para agrupar agentes por key (para los que comparten keys)
       En este se guardan momentanemente los agentes por llave.
@@ -88,8 +86,61 @@ const store = new Vuex.Store({
       /* Se recorre el Array, y se guardan por key los agentes que pertenecen a la misma key.*/
       listMultiAgentes.forEach(multiAgente => {
         if (multiAgente.condicionantes.length > 0) {
-          /* La toma de la primera llave no genera detalle, porque esta va fungir como mainKey solo de los agentes
-            de la clase del mapa, no del keyMaps, que es allí a esta llave va a apuntar. */
+          /*
+          Este caso dejó de ser funcional, porque existen pruebas de como este solo guarda el agente a una primera llave, bien
+          pero si tiene más llaves de condicionantes, solo estamos actando la primera, el detalle aquí, es que.
+          Si tiene más llaves, estas se generan después, pero solo apuntan a los agentes que fueron para esta llave.
+          Entonces ocurré que estas llaves ya no está porque tenemos que traer al agente completo, por cualquiera de
+          sus llaves, Con el caso ocurría el siguiente escencardio:
+
+          Tomaaba el agente[0], que solo responda a claveAgente.
+          no obstante, este tiene n condicioantes. 
+
+          Seguía con los demás, mientras estos fueron parte de agente.condicionantes[0], si los tomaba si claves coincidian.
+          El detalle venía posteriormente. Cuando creamos nuestras llaves secundarias.
+
+          agente.esMultipleCondicionante
+            -> Extrae todas sus keys[condicionantes] apunten(-->) a keyPrimaria de nuestro mapaAgentes.
+
+          !agente.esMultipleCondicionante 
+            -> Asigna su key condicionates[0] a keyPrimaria, por lo general es la priemra del mapaAgentes.
+
+          Posteriormente, en una segunda iteración, como los mapas solo responden a una llave. then.
+          keys[nombreAsegurado, apellidoPatAsegurado]
+          Ya existe 'nombreAsegurado' lo agregaba y que ahora apuntara a este agente el nuevo.
+          ASí -> 
+          claveAgente, claveAgente
+          nombreAsegurado, claveAgente,
+
+          Pero ahora lo sobreescribe quedando así:
+          claveAgente -> claveAgente
+          nombreAsegurado -> nombreAsegurado
+          nombreAsegurado -> appellidoPatASegurado.
+
+          Es deicr, ahora apuntaba a otro agente. Entonces si se pedía llamar al campo nombreAsegurado, pero con el valor del agente que comparte con claveAgente, entonces
+          no existía desde el primer mapa, y después en el segundo tampoco (por esto agente.condiconantes[0]). 
+          Esto porque tenemos Caso: MúltiplesAgentes que son agentesCompartidos (o llavesCompartidas), donde además estas llaves son propiad de múltiples condicionantes.
+          Agente[0]:
+            Condicionante[0]: key: claveAgente
+            Condicionante[1]: key: nombreAsegurado
+
+          Agente[1]:
+            Condicionante[0]: key: nombreAsegurado
+            Condicionante[1]: key: appellidoPatASegurado
+
+          Resultando en que la llave nombreAsegurado solo exista para el Agente[1], por tomar llave del primer condicioante.
+          Bien, ahora solo nos quedamos con un solo Mapa, un mapa normal.
+          donde los valores van a quedar así.
+
+          claveAgente -> Agente[0],
+
+          nombreAsegurado -> [
+                              Agente[0],
+                              Agente[1]
+          ],
+
+          apellidoPatAsegurado -> Agente[1]
+          */
           const keyCondicionante = multiAgente.condicionantes[0].key;
           
           // Si esta key ya existe en el mapa, agregamos este agente a su lista
@@ -108,40 +159,24 @@ const store = new Vuex.Store({
       // Arrays para almacenar los agentes según su categoría
       const agentesUnicos = []; //agenteÚnico, es decir aquello campos que solo se les ha configurado un solo agente.
       const agentesCompartidos = []; //agenteCompartido, es decir aquellos campos que se les has configurado más de un agente.
-      /* 
+      /*
         agenteUnico: plazoPago -> un solo agente, en el mapa se configura así: plazoPago -> [{}] length = 1.
         agenteCompartido: institucion -> Múltiples agentes para un campo: institucion -> [].length > 1.
       */
 
 
       // Iteramos en cada uno de los agentes según las llaves, donde tenemos compartidos[n], como únicos[{1}]
+        /* Iteración didáctica, por si necesitamos diferenciar sobre las
+          llaves que comparten agentes y las llaves que solo tienen un único agente. */
       mapaKeysPrototype.forEach((agents, key) => {
         //Es decir agenteÚnico. Si solo tiene un valor.
         if (agents.length === 1) {
           const agentUnico = agents[0];
           agentesUnicos.push(agentUnico);
-          // si tiene múltiples condicionantes, extraemos todas sus keys de cada uno de los condicionantes.
-          if (agentUnico.esMultipleCondicionante) {
-            const keysAgente = agentUnico.condicionantes.map(condicionante => condicionante.key);
-            /* Al Map Constructor le pasamos un Array de keys que todos apuntan a este agente.
-               es decir, va a crear múltiples keys para apuntar al mismo value(agente).   */
-            multiAgentesMap.set(keysAgente, agentUnico);
-          } else {
-            /* De lo contrario solo pasamos una llave y se manda en formato Array. */
-            multiAgentesMap.set([key], agentUnico);
-          }
         } else {
           // varios agentes para esta key
           agentesCompartidos.push(...agents);
-          // por si alguno tiene múltiples condicionantes, lo registramos individual
-          agents.forEach(agentCompartido => {
-            if (agentCompartido.esMultipleCondicionante) {
-              const keysAgente = agentCompartido.condicionantes.map(condicionante => condicionante.key);
-              multiAgentesMap.set(keysAgente, agentCompartido);
-            }
-          });
-          // además agrupamos todo el array bajo la key original
-          multiAgentesMap.set([key], agents);
+          
         }
       });
 
@@ -149,7 +184,7 @@ const store = new Vuex.Store({
       console.log('Agentes compartidos:', agentesCompartidos.length); */
 
       // Guardamos el mapa resultante en el estado
-      commit('mutateMultiAgentesMap', multiAgentesMap);
+      commit('mutateMultiAgentesMap', mapaKeysPrototype);
       
       // También podríamos guardar las listas separadas si se necesitan
       // commit('mutateAgentesUnicos', agentesUnicos);
