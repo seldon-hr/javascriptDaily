@@ -1,0 +1,22 @@
+[
+  {
+    "TABLA": "'CCPLAZOSPAGO'",
+    "CANTIDAD": "2"
+  },
+  {
+    "TABLA": "'CCINSTRUMENTOSPAGO'",
+    "CANTIDAD": "2"
+  },
+  {
+    "TABLA": "'CCGENERO'",
+    "CANTIDAD": "1"
+  },
+  {
+    "TABLA": "'CCCPCOLONIAS'",
+    "CANTIDAD": "1"
+  },
+  {
+    "TABLA": "'CCTIPOVEHICULO'",
+    "CANTIDAD": "1"
+  }
+]
