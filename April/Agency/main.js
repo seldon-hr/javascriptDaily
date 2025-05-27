@@ -33,6 +33,9 @@ const store = new Vuex.Store({
     mutateListMultiAgentes(state, entry) {
       state.listMultiAgentes = entry;
     },
+    mutateComponent(state, { type, value }) {
+      state.listComponentes[type][value];
+    }
   },
   actions: {
     updateListComponents({ state }, valor) {
@@ -220,6 +223,10 @@ const store = new Vuex.Store({
       } else {
         console.log(`Campo no encontrado: ${consecuente.source}`);
       }
+    },
+
+    updateComponent({ commit }, { type, value }) {
+      commit('mutateComponent', [type][value]);
     }
   }
 });

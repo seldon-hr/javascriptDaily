@@ -18,7 +18,9 @@
           :type="component.key"
           :value="component.value"
           :md="12"
+          @update="updateComponent(type: 'type', value: 'value')"
         >
+          <!-- @update="update(type: 'value', value: 'value')" -->
         </valores>
       </v-row>
     </v-container>
@@ -49,6 +51,7 @@ export default {
       updateListComponents: "updateListComponents",
       detectarMultiAgente: "detectarMultiAgente",
       cargarMultiAgentes: "cargarMultiAgentes",
+      updateComponent: "updateComponent",
     }),
     refreshPage() {
       window.location.reload();
