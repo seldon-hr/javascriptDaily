@@ -15,10 +15,10 @@ const store = new Vuex.Store({
   state: {
     contador: 0,
     listComponentes: [
-        { index: 1, key: "plazosPago", value: "" },
-        { index: 2, key: "color", value: "" },
-        { index: 3, key: "nombre", value: "" },
-        { index: 4, key: "resultadoFinal", value: "" },
+      { index: 1, key: "plazosPago",     value: "", type: "" },
+      { index: 2, key: "color",          value: "", type: "" },
+      { index: 3, key: "nombre",         value: "", type: "" },
+      { index: 4, key: "resultadoFinal", value: "", type: "" },
     ],
     listMultiAgentes: [],
     multiAgentesMap: new MapaAgentes(),
@@ -33,8 +33,11 @@ const store = new Vuex.Store({
     mutateListMultiAgentes(state, entry) {
       state.listMultiAgentes = entry;
     },
-    mutateComponent(state, { type, value }) {
-      state.listComponentes[type][value];
+    mutateComponent(state, { index, field, value }) {
+      const componentToAffect = state.listComponentes[index];
+      if (componentToAffect) {
+        componentToAffect[field] = value;
+      }
     }
   },
   actions: {
@@ -225,8 +228,8 @@ const store = new Vuex.Store({
       }
     },
 
-    updateComponent({ commit }, { type, value }) {
-      commit('mutateComponent', [type][value]);
+    updateComponent({ commit }, { index, field, value }) {
+      commit('mutateComponent', { index, field, value });
     }
   }
 });

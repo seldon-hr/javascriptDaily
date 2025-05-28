@@ -18,7 +18,13 @@
           :type="component.key"
           :value="component.value"
           :md="12"
-          @update="updateComponent(type: 'type', value: 'value')"
+          @update:value="
+            (newVal) =>
+              updateComponent({ index, field: 'value', value: newVal })
+          "
+          @update:type="
+            (newVal) => updateComponent({ index, field: 'type', value: newVal })
+          "
         >
           <!-- @update="update(type: 'value', value: 'value')" -->
         </valores>

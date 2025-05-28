@@ -34,7 +34,7 @@ export default {
         return this.type;
       },
       set(value) {
-        this.emit({ type: type, val: value });
+        this.$emit("update:type", value);
       },
     },
     localValue: {
@@ -42,7 +42,7 @@ export default {
         return this.value;
       },
       set(value) {
-        this.emit({ type: type, val: value });
+        this.$emit("update:value", value);
       },
     },
   },
