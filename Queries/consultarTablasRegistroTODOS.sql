@@ -1,4 +1,18 @@
+SELECT
+    *
+FROM
+    CCESTADO;
+
+
+
+
+
+
+
 SELECT * FROM CCCONSTANTES
+
+
+
 
 
 -- Esta consulta encuentra todas las tablas que tienen una columna llamada NOMBRE
