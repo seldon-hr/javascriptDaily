@@ -34,9 +34,9 @@ export default {
         return this.type;
       },
       set(value) {
-        /* if (value !== this.type) { */
-        this.$emit("update:type", value);
-        /*  } */
+        if (value !== this.type) {
+          this.$emit("update:type", value);
+        }
       },
     },
     localValue: {
