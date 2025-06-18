@@ -5,7 +5,6 @@ import App from "./App.vue";
 
 import MapaAgentes from "./Class/MapaAgentes";
 
-
 // Usa los plugins
 Vue.use(Vuex);
 Vue.use(Vuetify);
@@ -15,13 +14,14 @@ const store = new Vuex.Store({
   state: {
     contador: 0,
     listComponentes: [
-      { index: 1, key: "plazosPago",     value: "", type: "" },
-      { index: 2, key: "color",          value: "", type: "" },
-      { index: 3, key: "nombre",         value: "", type: "" },
-      { index: 4, key: "resultadoFinal", value: "", type: "" },
+      { index: 1, key: "plazosPago",     value: "", type: "", velocidad: null },
+      { index: 2, key: "color",          value: "", type: "", velocidad: null },
+      { index: 3, key: "nombre",         value: "", type: "", velocidad: null },
+      { index: 4, key: "resultadoFinal", value: "", type: "", velocidad: null },
     ],
     listMultiAgentes: [],
     multiAgentesMap: new MapaAgentes(),
+    velocidad: null,
   },
   mutations: {
     increment(state) {
@@ -38,9 +38,15 @@ const store = new Vuex.Store({
       if (componentToAffect) {
         componentToAffect[field] = value;
       }
-    }
+    },
+    mutateVelocidad(state, entry) {
+      state.velocidad = entry;
+    },
   },
   actions: {
+    updateVelocidad({ commit }, newValue) {
+      commit('mutateVelocidad', newValue);
+    },
     updateListComponents({ state }, valor) {
         state.listComponentes = valor;
     },
