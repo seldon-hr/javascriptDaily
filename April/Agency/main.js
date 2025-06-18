@@ -22,6 +22,7 @@ const store = new Vuex.Store({
     listMultiAgentes: [],
     multiAgentesMap: new MapaAgentes(),
     velocidad: null,
+    data:[],
   },
   mutations: {
     increment(state) {
@@ -42,33 +43,39 @@ const store = new Vuex.Store({
     mutateVelocidad(state, entry) {
       state.velocidad = entry;
     },
+    mutateData(state, data) {
+      state.data = data;
+    },
+    mutateListComponentes(state, components) {
+      state.listComponentes = components;
+    },
   },
   actions: {
     updateVelocidad({ commit }, newValue) {
       commit('mutateVelocidad', newValue);
     },
     updateListComponents({ state }, valor) {
-        state.listComponentes = valor;
+      state.listComponentes = valor;
     },
 
     async cargarMultiAgentes({ commit, dispatch }) {
       await fetch('./prototypesLists/listMultipleMultiAgentesOneCampo.json')
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.json();
-            })
-            .then(data => {
-              // Si el JSON tiene estructura con propiedad nombrada
-              const multiAgentes = data.multiAgentes || data;
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Si el JSON tiene estructura con propiedad nombrada
+          const multiAgentes = data.multiAgentes || data;
               
-              console.log('Multi-agentes cargados:', multiAgentes);
-              commit('mutateListMultiAgentes', multiAgentes);
-            })
-            .catch(error => {
-              console.error('Error al cargar los multi-agentes:', error);
-            });
+          console.log('Multi-agentes cargados:', multiAgentes);
+          commit('mutateListMultiAgentes', multiAgentes);
+        })
+        .catch(error => {
+          console.error('Error al cargar los multi-agentes:', error);
+        });
       
       //Transformar MultiAgentes a un mapa
       dispatch('transformMultiAgentesToMap');
@@ -178,8 +185,8 @@ const store = new Vuex.Store({
 
 
       // Iteramos en cada uno de los agentes según las llaves, donde tenemos compartidos[n], como únicos[{1}]
-        /* Iteración didáctica, por si necesitamos diferenciar sobre las
-          llaves que comparten agentes y las llaves que solo tienen un único agente. */
+      /* Iteración didáctica, por si necesitamos diferenciar sobre las
+        llaves que comparten agentes y las llaves que solo tienen un único agente. */
       mapaKeysPrototype.forEach((agents, key) => {
         //Es decir agenteÚnico. Si solo tiene un valor.
         if (agents.length === 1) {
@@ -221,21 +228,49 @@ const store = new Vuex.Store({
           console.log(`Esto campo tiene un agente: ${agente}`);
           procesarAgente(agente, campo, dispatch, state);
         }
-      }  
+      }
     },
     
     comandoAsignarValor({ state }, consecuente) {
       //Obtener campo a afectar
       const campo = findCampoAndReturn(state.listComponentes, consecuente.source);
-        if (campo) {
-        campo.value = consecuente.value; 
+      if (campo) {
+        campo.value = consecuente.value;
       } else {
         console.log(`Campo no encontrado: ${consecuente.source}`);
       }
     },
-
     updateComponent({ commit }, { index, field, value }) {
       commit('mutateComponent', { index, field, value });
+    },
+
+    /* Guardar Datos */
+    simulationSaveData({ state, commit }) {
+      const listaToSave = state.listComponentes.map(component => ({
+        ...component,
+        velocidad: component.velocidad?.text || component.velocidad,
+      }));
+
+      commit('mutateData', listaToSave);
+      commit('mutateListComponentes', []);
+    },
+    /* async */ cargarComponents({ state, commit }) {
+      if (!state.data || state.data.length === 0) {
+        alert('No hay datos guardados para cargar');
+        return;
+      }
+      
+      alert('Vamos a empezar a cargar los Componentes');
+      
+      // Restaurar objetos de velocidad desde strings
+      const componentesRestaurados = state.data.map(component => ({
+        ...component,
+        /* velocidad: typeof component.velocidad === 'string' 
+          ? { text: component.velocidad, value: getValueFromText(component.velocidad) }
+          : component.velocidad */
+      }));
+      
+      commit('mutateListComponentes', componentesRestaurados);
     }
   }
 });

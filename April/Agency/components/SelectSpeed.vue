@@ -39,10 +39,6 @@ export default {
       default: null,
     },
     md: { type: [String, Number] },
-    /* campo: {
-      type: Object,
-      default: () => {},
-    }, */
   },
   computed: {
     speedValue: {
@@ -50,7 +46,10 @@ export default {
         return this.velocidad;
       },
       set(newValue) {
-        this.$emit("update:velocidad", newValue);
+        //Agregar una validación, para no actualizar sino cambia.
+        if (newValue !== this.velocidad) {
+          this.$emit("update:velocidad", newValue);
+        }
       },
     },
   },
@@ -59,10 +58,20 @@ export default {
       detectarMultiAgente: "detectarMultiAgente",
     }),
   },
+  watch: {
+    velocidad: {
+      handler(val) {
+        if (typeof val === "string" && this.listSpeeds.length > 0) {
+          const newVelocidad = this.listSpeeds.find((s) => s.text === val);
+          this.speedValue = newVelocidad;
+        }
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
-  
-  <style scoped>
+<style scoped>
 .outlined-input {
   border: 1px solid #ccc;
   border-radius: 4px;

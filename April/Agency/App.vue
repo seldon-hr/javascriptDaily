@@ -35,6 +35,14 @@
         </template>
       </v-row>
     </v-container>
+    <v-row class="ma-0 pa-0">
+      <v-col :offset-md="8">
+        <v-btn @click="simulationSaveData"> Guardar Datos </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn @click="cargarComponents"> Cargar Datos </v-btn>
+      </v-col>
+    </v-row>
   </v-app>
 </template>
 
@@ -70,6 +78,8 @@ export default {
       cargarMultiAgentes: "cargarMultiAgentes",
       updateComponent: "updateComponent",
       updateVelocidad: "updateVelocidad",
+      simulationSaveData: "simulationSaveData",
+      cargarComponents: "cargarComponents",
     }),
     refreshPage() {
       window.location.reload();
