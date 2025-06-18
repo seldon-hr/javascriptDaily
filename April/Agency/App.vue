@@ -17,7 +17,7 @@
               "
             />
             <valores
-              :type="component.key"
+              :type="component.type"
               :value="component.value"
               :md="8"
               @update:value="

@@ -25,7 +25,7 @@ export default {
   },
   props: {
     md: { type: Number, String, default: 4 },
-    type: { type: String, default: "text" },
+    type: { type: [String, Object], default: "text" },
     value: { type: [String, Number, Boolean, Object, Array], default: "" },
   },
   computed: {
@@ -34,7 +34,9 @@ export default {
         return this.type;
       },
       set(value) {
+        /* if (value !== this.type) { */
         this.$emit("update:type", value);
+        /*  } */
       },
     },
     localValue: {
@@ -43,6 +45,18 @@ export default {
       },
       set(value) {
         this.$emit("update:value", value);
+      },
+    },
+  },
+  watch: {
+    type: {
+      handler(val) {
+        if (typeof val === "string" && this.items.length > 0) {
+          const newType = this.items.find((i) => i.text === val);
+          if (newType) {
+            this.localType = newType;
+          }
+        }
       },
     },
   },
