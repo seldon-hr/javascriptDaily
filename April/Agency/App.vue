@@ -34,6 +34,12 @@
           </v-row>
         </template>
       </v-row>
+      <v-row>
+        <componente
+          :valor="valorComponente"
+          @update:valor="(newVal) => updateComponente(newVal)"
+        />
+      </v-row>
     </v-container>
     <v-row class="ma-0 pa-0">
       <v-col :offset-md="8">
@@ -51,6 +57,7 @@ import { mapState, mapActions } from "vuex";
 import CustomTextField from "./components/CustomTextField.vue";
 import SelectSpeed from "./components/SelectSpeed.vue";
 import Valores from "./components/Valores.vue";
+import Componente from "./components/Component.vue";
 export default {
   name: "App",
   data() {
@@ -62,6 +69,7 @@ export default {
     CustomTextField,
     Valores,
     SelectSpeed,
+    Componente,
   },
   computed: {
     ...mapState({
@@ -69,6 +77,14 @@ export default {
     }),
     listComponentes() {
       return this.state.listComponentes;
+    },
+    valorComponente: {
+      get() {
+        return this.state.valorComponente;
+      },
+      set(val) {
+        this.updateComponente(val);
+      },
     },
   },
   methods: {
@@ -80,6 +96,7 @@ export default {
       updateVelocidad: "updateVelocidad",
       simulationSaveData: "simulationSaveData",
       cargarComponents: "cargarComponents",
+      updateComponente: "updateComponente",
     }),
     refreshPage() {
       window.location.reload();

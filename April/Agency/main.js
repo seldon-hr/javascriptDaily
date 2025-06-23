@@ -22,7 +22,8 @@ const store = new Vuex.Store({
     listMultiAgentes: [],
     multiAgentesMap: new MapaAgentes(),
     velocidad: null,
-    data:[],
+    data: [],
+    valorComponente: {},
   },
   mutations: {
     increment(state) {
@@ -49,8 +50,15 @@ const store = new Vuex.Store({
     mutateListComponentes(state, components) {
       state.listComponentes = components;
     },
+    mutateValorComponente(state, entry) {
+      state.valorComponente = entry;
+    },
   },
   actions: {
+    updateComponente({ commit }, entry) {
+      console.log('Valor recibido;', entry);
+      commit('mutateValorComponente', entry);
+    },
     updateVelocidad({ commit }, newValue) {
       commit('mutateVelocidad', newValue);
     },
