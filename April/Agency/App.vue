@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+    <!--   <v-container>
       <h1>Prototipo de Vue</h1>
       <v-btn @click="cargarMultiAgentes"> Cargar Agentes </v-btn>
       <v-btn @click="refreshPage"> Refresh </v-btn>
@@ -29,7 +29,6 @@
                   updateComponent({ index, field: 'type', value: newVal })
               "
             >
-              <!-- @update="update(type: 'value', value: 'value')" -->
             </valores>
           </v-row>
         </template>
@@ -48,6 +47,11 @@
       <v-col>
         <v-btn @click="cargarComponents"> Cargar Datos </v-btn>
       </v-col>
+    </v-row> -->
+    <v-row>
+      <v-col>
+        <chat />
+      </v-col>
     </v-row>
   </v-app>
 </template>
@@ -58,6 +62,7 @@ import CustomTextField from "./components/CustomTextField.vue";
 import SelectSpeed from "./components/SelectSpeed.vue";
 import Valores from "./components/Valores.vue";
 import Componente from "./components/Component.vue";
+import Chat from "./components/chat.vue";
 export default {
   name: "App",
   data() {
@@ -70,6 +75,7 @@ export default {
     Valores,
     SelectSpeed,
     Componente,
+    Chat,
   },
   computed: {
     ...mapState({
