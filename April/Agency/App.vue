@@ -1,6 +1,7 @@
 <template>
-  <v-app>
-    <!--   <v-container>
+  <v-app
+    ><v-container>
+      <!--   
       <h1>Prototipo de Vue</h1>
       <v-btn @click="cargarMultiAgentes"> Cargar Agentes </v-btn>
       <v-btn @click="refreshPage"> Refresh </v-btn>
@@ -39,7 +40,7 @@
           @update:valor="(newVal) => updateComponente(newVal)"
         />
       </v-row>
-    </v-container>
+    
     <v-row class="ma-0 pa-0">
       <v-col :offset-md="8">
         <v-btn @click="simulationSaveData"> Guardar Datos </v-btn>
@@ -48,11 +49,12 @@
         <v-btn @click="cargarComponents"> Cargar Datos </v-btn>
       </v-col>
     </v-row> -->
-    <v-row>
-      <v-col>
-        <chat />
-      </v-col>
-    </v-row>
+      <v-row>
+        <v-col>
+          <chat />
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
 

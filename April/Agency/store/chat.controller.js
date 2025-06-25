@@ -43,8 +43,6 @@ const mutations = {
     SET_RESPONSE(state, payload) {
         state.response = payload
     }
-
-
 }
 const getters = {}
 export const chatController = {
