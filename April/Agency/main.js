@@ -5,12 +5,19 @@ import App from "./App.vue";
 
 import MapaAgentes from "./Class/MapaAgentes";
 
+
+/* Lista de Controllers */
+import { chatController } from "./store/chat.controller";
+
 // Usa los plugins
 Vue.use(Vuex);
 Vue.use(Vuetify);
 
 // Definición del store
 const store = new Vuex.Store({
+  modules: {
+    chatController,
+  },
   state: {
     contador: 0,
     listComponentes: [
