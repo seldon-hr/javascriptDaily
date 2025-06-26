@@ -54,6 +54,15 @@
           <chat />
         </v-col>
       </v-row>
+      <v-row>
+        <v-col>
+          <childComponent
+            :value="valorComponent"
+            @set:value="(val) => (valorComponent = val)"
+          >
+          </childComponent>
+        </v-col>
+      </v-row>
     </v-container>
   </v-app>
 </template>
@@ -65,11 +74,13 @@ import SelectSpeed from "./components/SelectSpeed.vue";
 import Valores from "./components/Valores.vue";
 import Componente from "./components/Component.vue";
 import Chat from "./components/chat.vue";
+import ChildComponent from "./components/ChildComponent.vue";
 export default {
   name: "App",
   data() {
     return {
       valor: null,
+      valorChild: null,
     };
   },
   components: {
@@ -78,6 +89,7 @@ export default {
     SelectSpeed,
     Componente,
     Chat,
+    ChildComponent,
   },
   computed: {
     ...mapState({
@@ -85,6 +97,14 @@ export default {
     }),
     listComponentes() {
       return this.state.listComponentes;
+    },
+    valorComponent: {
+      get() {
+        return this.valorChild;
+      },
+      set(val) {
+        this.valorChild = val;
+      },
     },
     valorComponente: {
       get() {
