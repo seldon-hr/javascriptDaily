@@ -149,3 +149,25 @@ console.log('¿Set C y SetD son distintos?', setC.isDisjointFrom(setD));
 /* Finalización con el uso de sets, y su comportamiento, teoría de conjuntos. */
 
 
+
+/* Conjunto estático 
+Este no existe en JS, es decir un conjunto no mutable, bueno, pues este lo extendemos igual
+*/
+class StaticState extends SetExtentido {
+    constructor(items) {
+        super(items);
+    
+
+        this.add = undefined;
+        this.delete = undefined;
+        this.clear = undefined;
+    }
+}
+
+
+const conjuntoEstatico = new StaticState(['Juan', 'John', 'Korn']);
+console.log(conjuntoEstatico);
+conjuntoEstatico.clear();
+/* Nos marcará error, porque no podemos mutar un nuevo set estático, y le hemos
+undefined estos métodos de mutación. */
+console.log(conjuntoEstatico);
