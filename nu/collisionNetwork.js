@@ -21,10 +21,27 @@ console.log(fileToSets("1 2\n2 3\n4 5"));
 
 
 /* Define a newEdge of the graph to have an adejecency list */
-/* function newEdge(){
-    let adejecencyList = new Map();
-    adejecencyList.add('1', ["2"]);
-    console.log(adejecencyList);
+let adejecencyList = new Map();
+
+function newEdge(adejecencyList, edge) {
+    const [a, b] = edge;
+
+
+    if (!adejecencyList.has(a)) {
+        adejecencyList.set(a, new Set());
+    }
+    adejecencyList.get(a).add(b);
+
+    if (!adejecencyList.has(b)) {
+        adejecencyList.set(b, new Set());
+    }
+
+    adejecencyList.get(b).add(a);
+
 }
 
-newEdge(); */
+newEdge(adejecencyList, ['1', '2']);
+newEdge(adejecencyList, ['2', '3']);
+newEdge(adejecencyList, ['4', '5']);
+
+console.log(adejecencyList);
