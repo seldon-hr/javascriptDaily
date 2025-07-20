@@ -70,17 +70,38 @@ console.log(graph);
 
 
 
-/* Vamos a implementar la solución para identificar si se encuentran en la misma red */
-/* 
-function isSameNetwork(a, b, adejecencyList,) {
+/* Vamos a implementar la solución para identificar si se encuentran en la misma red 
+Como hemos armado un grafo, necesitamos un método de búsqueda, en este caso deepFirstSearch
+*/
+
+function isSameNetwork(nodeA, nodeB, adejecencyList) {
+    //En este set vamos a almacenar los nodos que ya fueron visitados o revisado.
+    const visited = new Set();
     
-    if () {
-        
-    } else {
-        
+    //Cremos la función y lo que buscamos es tratar de llegar al nodoB desde el nodeA
+    function deepFirstSearch(node) { //El nodo en el que nos encontremos.
+
+        if (node === nodeB) { // el nodo actual es igual al que queremos alcanzar?
+            return true; // si pertenece a esta red.
+        }
+        visited.add(node); //no, lo agregamos como este node ya fue revisado.
+
+        for (const neighbor of adejecencyList.get(node) || []) { // Vamos a recorrer cada uno de los valores del grafo según su key. 
+            if (!visited.has(neighbor)) { // El vecino acutal no ha sido visitado, 
+                if (deepFirstSearch(neighbor)) { //no, la función se llama recursivamente.
+                    return true; // nos devuleve true, entonces son vecinos, pertenecen a la misma red.
+                }
+            }
+        }
+
+        return false; // entonces, no se pusede llegar al nodeB desde el nodeA, no pertenecen a la misma colisión
     }
-
+    return deepFirstSearch(nodeA); //Excepción el nodeA y el nodoB es el mismo nodo.
 }
- */
 
 
+
+console.log(isSameNetwork('1', '3', graph)); // true
+console.log(isSameNetwork('1', '5', graph)); // false
+console.log(isSameNetwork('4', '5', graph)); // true
+console.log(isSameNetwork('3', '6', graph)); // false (6 no existe)
