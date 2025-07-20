@@ -4,7 +4,7 @@ function stringToSets(string) {
     return string.split(" ");
     //                  ⬆️ Convertir e ignorar este carácter de separación.
 }
-/* console.log(stringToSets("1 3")); */
+
 
 function fileToSets(fileText) {
     console.log(fileText);
@@ -15,13 +15,15 @@ function fileToSets(fileText) {
     const lastArray = lines.map(line => {
         return stringToSets(line);
     });
+    console.log(lastArray);
     return lastArray;
 }
-console.log(fileToSets("1 2\n2 3\n4 5"));
 
 
-/* Define a newEdge of the graph to have an adejecency list */
-let adejecencyList = new Map();
+
+/* Defibne cada arista de los nodos, cada uno con quien tiene relación.
+Mi versióon
+*/
 
 function newEdge(adejecencyList, edge) {
     const [a, b] = edge;
@@ -40,8 +42,45 @@ function newEdge(adejecencyList, edge) {
 
 }
 
-newEdge(adejecencyList, ['1', '2']);
+/* newEdge(adejecencyList, ['1', '2']);
 newEdge(adejecencyList, ['2', '3']);
-newEdge(adejecencyList, ['4', '5']);
+newEdge(adejecencyList, ['4', '5']); */
 
-console.log(adejecencyList);
+/*  
+    Cuando newEdge lo hace por cada array, mientras que aquí iteramos en el resultado
+    que nos estará devolviendo fileToSets, array de arrays.
+*/
+
+function edgesToAdjecenyList(edges) {
+    const adejecencyList = new Map();
+    
+    for (const edge of edges) {
+        newEdge(adejecencyList, edge);
+    }
+
+    return adejecencyList
+}
+
+
+const file = "1 2\n2 3\n4 5";
+const edges = fileToSets(file);
+const graph = edgesToAdjecenyList(edges);
+console.log(graph);
+
+
+
+
+/* Vamos a implementar la solución para identificar si se encuentran en la misma red */
+/* 
+function isSameNetwork(a, b, adejecencyList,) {
+    
+    if () {
+        
+    } else {
+        
+    }
+
+}
+ */
+
+
