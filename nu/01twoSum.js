@@ -33,7 +33,7 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
+/* var twoSum = function(nums, target) {
     for (let index = 0; index < nums.length; index++) {
         const element = nums[index];
         for (let index1 = index + 1; index1 < nums.length; index1++) {
@@ -45,14 +45,43 @@ var twoSum = function(nums, target) {
             }
         }
     }
-};
+}; */
 
 /* Solución, pero con el uso de reduce, ¿se puede?
     en este caso no, nos sirve por cuestión de que reduce termina con un valor.
 */
+// var twoSum = function (nums, target) {
+//     nums.reduce((sumAcumulador, item) => {/* Lógica here */ }, 0);
+// }
+
+
+
+/* Solución con un mapa, el cual nos sirve para no escalar en revisión de cada caso, sino un control O(n)
+    Uso de maps, pero igual se le puede considerar como hashmap con el uso de un object.
+*/
+/* 
+*Tenemos que hacemos un cálculo conforme a la difrencia y esta la almacenamos dentro de un mapa
+* el cual asignamos su elemento, como llave, y su índice como valor. entonces donde nos encontremos
+* la diferencia va a ser el primer valor, porque ya fue almacendado, y el segundo conforme al quien itere en el loop.
+*/
 var twoSum = function (nums, target) {
-    nums.reduce((sumAcumulador, item) => {/* Lógica here */ }, 0);
+    let visited = new Map();
+    for (let index = 0; index < nums.length; index++) {
+        const element = nums[index];
+        //La diferencia será nuestro indicador del primer valor.
+        let difference = target - element;
+        //¿Un valor tiene la diferencia?
+        if (visited.has(difference)) {
+            //Significa que este que tenga la idrencia es la suma con el actual.
+            return [visited.get(difference), index];
+        } else {
+            //No, lo almacenamos en el mapa.
+            visited.set(element, index);
+        }
+    }
 }
+
+
 
 
 
