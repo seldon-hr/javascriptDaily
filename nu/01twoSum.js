@@ -36,7 +36,7 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 var twoSum = function(nums, target) {
     for (let index = 0; index < nums.length; index++) {
         const element = nums[index];
-        for (let index1 = 1; index1 < nums.length; index1++) {
+        for (let index1 = index + 1; index1 < nums.length; index1++) {
             const element1 = nums[index1];
             
             sum = element + element1;
@@ -47,8 +47,12 @@ var twoSum = function(nums, target) {
     }
 };
 
-
-
+/* Solución, pero con el uso de reduce, ¿se puede?
+    en este caso no, nos sirve por cuestión de que reduce termina con un valor.
+*/
+var twoSum = function (nums, target) {
+    nums.reduce((sumAcumulador, item) => {/* Lógica here */ }, 0);
+}
 
 
 
