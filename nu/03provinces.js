@@ -55,19 +55,18 @@ var findCircleNum = function (input) {
             let provincia = new Set();
             provincia.add(ciudad);
 
-            function isConnected(ciudad, relacionesCiudades) {
+            function isConnected(relacionesCiudades) {
                 relacionesCiudades.forEach((c) => {
                     
                     if (!visited.has(c)) {
                         provincia.add(c);
                         visited.add(c);
-                        isConnected(c, mapaProvincias.get(c));
-                        
+                        isConnected(mapaProvincias.get(c));
                     } 
                 });
             }
 
-            isConnected(ciudad, relacionesCiudades);
+            isConnected(relacionesCiudades);
 
             if (provincia.size > 0) {
                 provincias.add(provincia);
@@ -80,7 +79,7 @@ var findCircleNum = function (input) {
     
    
 
-    return mapaProvincias;
+    return provincias.size;
 };
 
 
