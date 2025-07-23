@@ -31,11 +31,11 @@ var findCircleNum = function (input) {
         ciudad.forEach(relacion => {
 
             if (relacion === 1) {
-                if (mapaProvincias.has(numeroRelaciones) ) {
+                if (mapaProvincias.has(numeroCiudad) ) {
   
-                    mapaProvincias.get(numeroRelaciones).push(numeroCiudad);
+                    mapaProvincias.get(numeroCiudad).push(numeroRelaciones);
                 } else {
-                    mapaProvincias.set(numeroRelaciones, [numeroCiudad]);
+                    mapaProvincias.set(numeroCiudad, [numeroRelaciones]);
                 }
             }
             numeroRelaciones++;
@@ -45,6 +45,38 @@ var findCircleNum = function (input) {
     });
 
     //Transformar a provincias (conjuntos)
+    let provincias = new Set();
+    let visited = new Set();
+    mapaProvincias.forEach((relacionesCiudades, ciudad) => {
+        if (visited.has(ciudad)) {
+            return;
+        } else {
+            visited.add(ciudad);
+            let provincia = new Set();
+            provincia.add(ciudad);
+
+            function isConnected(ciudad, relacionesCiudades) {
+                relacionesCiudades.forEach((c) => {
+                    
+                    if (!visited.has(c)) {
+                        provincia.add(c);
+                        visited.add(c);
+                        isConnected(c, mapaProvincias.get(c));
+                        
+                    } 
+                });
+            }
+
+            isConnected(ciudad, relacionesCiudades);
+
+            if (provincia.size > 0) {
+                provincias.add(provincia);
+            }
+        }   
+        
+    });
+    console.debug('Visitadas',visited);
+    console.debug('Provincias: ',provincias);
     
    
 
@@ -52,11 +84,18 @@ var findCircleNum = function (input) {
 };
 
 
+
+
+
+
+
+
 let dosProvincias = [[1, 0, 0], [0, 1, 1], [0, 1, 1]];
 let unaProvincia = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
 let tresProvincias = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
-let unaProvinciaConCuatroCiudades = [[1,0,0,1],[0,1,1,0],[0,1,1,1],[1,0,1,1]]
+let unaProvinciaConCuatroCiudades = [[1, 0, 0, 1], [0, 1, 1, 0], [0, 1, 1, 1], [1, 0, 1, 1]]
 console.debug(findCircleNum(dosProvincias));
+/* console.debug(findCircleNum(dosProvincias));
 console.debug(findCircleNum(unaProvincia));
-console.debug(findCircleNum(tresProvincias));
-console.debug(findCircleNum(unaProvinciaConCuatroCiudades));
+console.debug(findCircleNum(tresProvincias)); */
+/* console.debug(findCircleNum(unaProvinciaConCuatroCiudades)); */
