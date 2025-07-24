@@ -94,7 +94,7 @@ let unaProvincia = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
 let tresProvincias = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
 let unaProvinciaConCuatroCiudades = [[1, 0, 0, 1], [0, 1, 1, 0], [0, 1, 1, 1], [1, 0, 1, 1]]
 console.debug(findCircleNum(dosProvincias));
-/* console.debug(findCircleNum(dosProvincias));
+console.debug(findCircleNum(dosProvincias));
 console.debug(findCircleNum(unaProvincia));
-console.debug(findCircleNum(tresProvincias)); */
-/* console.debug(findCircleNum(unaProvinciaConCuatroCiudades)); */
+console.debug(findCircleNum(tresProvincias));
+console.debug(findCircleNum(unaProvinciaConCuatroCiudades));
