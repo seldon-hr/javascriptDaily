@@ -76,5 +76,21 @@ printNode(listaLinked.head);
 console.debug(lista);
 
 
+/* ListNode, anidada por medio de los propios nodes. */
+
+let list = [];
+
+function addNode(node, list) {
+    if (node) {
+        list.push(node.val);
+        addNode(node.next);
+    } else {
+        return list;
+    }
+}
+
+
+/* de manera que tenemos que primero convertir la ListNode a una lista
+y después converitr  */
 
 
