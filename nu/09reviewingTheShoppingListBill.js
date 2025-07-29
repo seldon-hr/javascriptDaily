@@ -24,42 +24,67 @@ Reglas
 - Retornar la suma total.
 */
 
+/* Input */
+const products = [
+  ["10", "d0", "d1"],
+  ["15", "EMPTY", "EMPTY"],
+  ["20", "d1", "EMPTY"]
+];
+const discounts = [
+  ["d0", "1", "0.27"],  // tipo 1: 27% off → 10 * 0.73 = 7.3 → round = 7
+  ["d1", "2", "5"]      // tipo 2: -5 → 10 - 5 = 5
+];
+
 /* Código */
 
 function calculateSum(products, discounts) {
     let total = 0;
     
     products.forEach(item => {
-        let originalPrice = item[0];
-        let discount = 0;
-        let amouuntDisocunt = discounts[0];
-        let porcentage = discounts[1];
+        console.debug('Producto', item)
+        let originalPrice = parseFloat(item[0]);
+        let minimalPrice = originalPrice;
+     
 
+        for (let index = 1; index < item.length; index++) {
+            let tag = item[index];
+            // Caso donde no hay discounts
+            if (tag === 'EMPTY' || !tag) continue;
 
-        switch (discounts[2]) {
-            case d0:
-                discount = originalPrice * 10 / porcentage;
-                break;
-            case d1:
-                discount = originalPrice - amouuntDisocunt;
-                break;
-            case d2:
-                discount = originalPrice;
-                break;
-            default:
-                break;
-        }
-
-        // Caso de descontar cual es el precio menor
-        if (condition) {
             
-        }
+            let discountItem = discounts.find(d => d[0] === tag);
+            if (!discountItem) continue;
 
+            let typeDiscount = parseInt(discountItem[1]);
+            let amouuntDisocunt = parseFloat(discountItem[2]);
+            let discount;
 
-        total = total + Math.round(discount);
+            switch (typeDiscount) {
+                case 0:
+                    discount = amouuntDisocunt;
+                    break;
+                case 1:
+                    discount = originalPrice * ( 1 - amouuntDisocunt);
+                    break;
+                case 2:
+                    discount = originalPrice - amouuntDisocunt;
+                    break;
+                default:
+                    break;
+            }
+
+            // Caso de descontar cual es el precio menor
+            if (discount < minimalPrice) {
+                minimalPrice = discount
+            }
+
+         }
+        total += Math.round(minimalPrice);
     });
 
 
 
     return total;
 }
+
+console.debug(calculateSum(products, discounts));
