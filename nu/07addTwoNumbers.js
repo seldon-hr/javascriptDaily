@@ -112,7 +112,16 @@ var addTwoNumbers = function (l1, l2) {
     sum = sum.toString().split('').reverse().map(Number);
 
     /* Convert sum to ListNode */
-    
+    function arrayToListNode(list) {
+        let firstNode = new ListNode();
+        let currentPosition = firstNode;
+        for (let val of list) {
+            currentPosition.next = new ListNode(val);
+            currentPosition = currentPosition.next
+        }
+        return firstNode.next;
+    };
+    sum = arrayToListNode(sum);
     
 
     return sum;
