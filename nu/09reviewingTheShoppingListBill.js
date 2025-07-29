@@ -56,7 +56,7 @@ function calculateSum(products, discounts) {
         }
 
 
-        total = total * Math.round(discount);
+        total = total + Math.round(discount);
     });
 
 
