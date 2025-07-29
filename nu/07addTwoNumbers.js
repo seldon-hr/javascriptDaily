@@ -108,7 +108,7 @@ var addTwoNumbers = function (l1, l2) {
     /* Sum of the values */
     let number1 = list1.reverse().join('');
     let number2 = list2.reverse().join('');
-    let sum = parseInt(number1) + parseInt(number2);
+    let sum = BigInt(number1) + BigInt(number2);
     sum = sum.toString().split('').reverse().map(Number);
 
     /* Convert sum to ListNode */
