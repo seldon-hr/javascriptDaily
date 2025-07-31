@@ -22,6 +22,8 @@ var removeElement = function (nums, val) {
     console.debug('Array:', nums);
     return nums.length;
 };
+/* ⬆️ El mismo ejercicio puede ser resuelto sin hacer uso de un parámetro en la función recursiva.
+    porque, entonces tenemos que dnetor de nuestra comparación de si es igual a val, sería nums[index], y así con todos. */
 let nums = [3, 2, 2, 3];
 let val = 3;
 let nums2 = [0, 1, 2, 2, 3, 0, 4, 2];
