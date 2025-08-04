@@ -36,7 +36,7 @@ contar desde que el valor que tenemos sea distinto al número anterior.
 Todo esto porque los números ya están ordenados.
 
 */
-var removeDuplicates = function(nums) {
+/* var removeDuplicates = function(nums) {
     let index = 1;
     let noDuplicate = 1;
     while (index < nums.length) {
@@ -48,7 +48,33 @@ var removeDuplicates = function(nums) {
     }
     
     return noDuplicate;
-};
+}; */
 
-let nums = [1,2,2];
+
+/* ¿Recursividad? */
+var removeDuplicates = function (nums) {
+    let index = 1;
+    let noDuplicate = 1;
+    function count() {
+        if (index < nums.length) {
+            if (nums[index] !== nums[index - 1]) {
+                nums[noDuplicate] = nums[index]
+                noDuplicate++
+            }
+            index++
+            count();
+        }
+    }
+    count();
+    return noDuplicate;
+}
+
+
+
+
+
+
+
+
+let nums = [1, 2, 2];
 console.debug(removeDuplicates(nums));
