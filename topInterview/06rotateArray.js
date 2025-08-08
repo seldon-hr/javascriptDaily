@@ -16,6 +16,13 @@ var rotate = function (nums, k) {
     */
     k = k % nums.length; //normalizar 
 
+
+    /* Dentro creamos una función que hace un rotamiento, desde dos posiciones que pases.
+        two pointers, un index, y un indexDecrase
+        Y hacemos un intercambios de valores, no de una sola asignación sino de dos
+        por medio de un array, y conforme a la posición una asignación.
+    */
+
     function reverse(index, indexDecrase) {
         while (index < indexDecrase) {
             [nums[index], nums[indexDecrase]] = [nums[indexDecrase], nums[index]];
@@ -24,6 +31,11 @@ var rotate = function (nums, k) {
             indexDecrase--
         }
     }
+
+    /* De aquí tendremo tres llamados, porque se un recorrer, no un solo reverse */
+    /* Invertiry array. */
+    /* Invertir hasta k, es decir de inicio a k */
+    /* INvertir de k hasta el final. */
 
     reverse(0, nums.length - 1);
     reverse(0, k - 1);
