@@ -1,5 +1,5 @@
 /* Remove with hash */
-var removeDuplicateSortedArray = function (nums) {
+/* var removeDuplicateSortedArray = function (nums) {
     let set = new Set();
     let index = 0;
     while (index < nums.length) {
@@ -11,17 +11,18 @@ var removeDuplicateSortedArray = function (nums) {
         index++
     }
     return set.size;
-}
+} */
 
 /* However, w hav to count without that. */
 var removeDuplicateSortedArray = function (nums) {
-    let k = 0;
+    let k = 1;
     let index = 0;
-    while (index < nums.length) {
-        
-
-
-        index++
+    let secondIndex = 1;
+    while (secondIndex < nums.length) {
+        if (nums[index] !== nums[secondIndex]) {
+            k++;
+        }
+        secondIndex++;
     }
     return k;
 }
