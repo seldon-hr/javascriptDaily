@@ -24,13 +24,18 @@ var processArray = function (nums) {
 
 
 //For
-function processArray(nums) {
+function processArray(nums, stopNumbers, passNumbers) {
     let listSuccess = [];
-    let stopList = new Set(100); //podemos añadir más
-    let passOptions = new Set(50); 
+    let stopList = new Set(stopNumbers ? stopNumbers : []); 
+    let passOptions = new Set(passNumbers ? passNumbers : []);
+    let wasStopped = false;
+    let caseStop;
+
     for (let i = 0; i < nums.length; i++) {
         if (stopList.has(nums[i])) {
-            console.debug('Me detuve porque encontre el 100 en la posición', i);
+            console.debug(`Función detenida por ${nums[i]} en la posición: ${i}`);
+            caseStop = nums[i];
+            wasStopped = true;
             break;
         }
         if (nums[i] < 0 || passOptions.has(nums[i])) {
@@ -39,6 +44,11 @@ function processArray(nums) {
         listSuccess.push(nums[i]);
         // procesar número positivo
     }
-    console.debug('Procese todos')    
-    return ('Lista Procesada', listSuccess)
+
+    // Trabajar la función como una API
+    return {
+        proccessItems: listSuccess,
+        status: wasStopped ? `Interrupt` : `Ok`,
+        message: wasStopped ? `Interrumpción por el caso: ${caseStop}` : `Se procesaron ${listSuccess.length} casos de ${nums.lenght}.`,
+    }
 }
