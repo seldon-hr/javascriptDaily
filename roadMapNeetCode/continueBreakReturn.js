@@ -52,3 +52,8 @@ function processArray(nums, stopNumbers, passNumbers) {
         message: wasStopped ? `Interrumpción por el caso: ${caseStop}` : `Se procesaron ${listSuccess.length} casos de ${nums.lenght}.`,
     }
 }
+/* 
+Diferencias entre cada uno de estos casos:
+continue: Ignora el resto del código para estos casos y pasa la nueva iteración.
+break: Rompe el loop y pasa directo al return o el código fuera del loop.
+return: Concluye la función y devuelve el objeto con la información según el caso. */
