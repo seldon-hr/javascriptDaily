@@ -20,7 +20,7 @@ async function fetchRFCData(id) {
     
     return data;
   } catch (error) {
-    console.error('Error fetching siniestro data:', error);
+    console.error('Error fetching RFC data:', error);
     throw error;
   }
 }
