@@ -1,4 +1,4 @@
-let heights = [3, 0, 2, 0, 4]
+let heights = [0,1,0,2,1,0,1,3,2,1,2,1]
 /* Desarrollo de Trapping Water con el oppositeDirection */
 var trapWater = function (heights) {
     let left = 0;
@@ -8,18 +8,15 @@ var trapWater = function (heights) {
     let maxRight = heights[right];
 
     while (left < right) {
-        let area = 0;
-        if (heights[left] <= heights[right]) {
-            area = Math.min(maxLeft, maxRight) - heights[left];
-            total += area;
 
+        if (heights[left] <= heights[right]) {
+            //Ajustar y tomar el valor inmediato, ¿por qué el máximo?
             maxLeft = Math.max(maxLeft, heights[left]);
+            total += maxLeft - heights[left];
             left += 1;
         } else {
-            area = Math.min(maxLeft, maxRight) - heights[right];
-            total += area;
-
             maxRight = Math.max(maxRight, heights[right]);
+            total += maxRight -heights[right];
             right -= 1;
         }
     }
