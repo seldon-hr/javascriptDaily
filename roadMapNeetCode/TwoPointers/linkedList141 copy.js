@@ -2,7 +2,7 @@ function findMiddle(head) {
     if (!head) return null;
     
     let slow = head;
-    let fast = head;
+    let fast = head.next; //Iniciemos como el doble de slow.
     
     while (fast && fast.next) {
         //Avanzamos uno y el doble.
