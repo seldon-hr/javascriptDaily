@@ -12,12 +12,16 @@
  */
 var removeNthFromEnd = function(head, n) {
     //Validaciones
-    if(n <= 0){
-        return null; //Return [], no cumple
-    } 
+    //Validación que resta de forma innecesaria.
+    /* if(n <= 0){
+        return null; //Return null, no cumple
+    } */ 
     if(!head) return null; //No existe el caso completo
 
     //Creación de un caso tipo dummy, agregar un valor al inicio
+    /* Crear data dummy es un proceso por el cual es complmentario para trabajar con esta como auxiliar.
+    se compone para poder aquí usar el propio head como un nuevo valor dummy.head, así si
+    n === head número de elementos, tenenemos que eliminar el caso head. */
     let dummy = new ListNode(0);
     dummy.next = head;
 
@@ -41,6 +45,13 @@ var removeNthFromEnd = function(head, n) {
     }
 
     //Incrementar el slow a la posición que estamos saltando:
+    /* Esto no esta indicando que nos encontramos que saltar después del elemento tal, y como arriba ya nos detuvivmos uno antes en counter <= n 
+        aquí vamos a señalar que el nuevo valor que saltamos procede del siguiente de este
+        slow
+        slow.next
+        slow.next.next
+        slow.next nos apuntará a slow.next.next, así nos saltamos a slow.next acutal.
+        */
     slow.next = slow.next.next;
     //fast = null
     //Devolver el último, ya que, dummy fue material auxiliar.
