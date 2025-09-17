@@ -1,4 +1,6 @@
 /* Encontar si es palíndromo en una linked-list 
+234. Palindrome Linked List
+
     - Encontrar el punto medio.
 - Separar ambas mitades.
 - Invertir segunda mitad:
