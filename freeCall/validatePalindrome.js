@@ -1,9 +1,19 @@
-/* Encontar si es palíndromo en una linked-list */
+/* Encontar si es palíndromo en una linked-list 
+    - Encontrar el punto medio.
+- Separar ambas mitades.
+- Invertir segunda mitad:
+	- Uso de prev, current y nextTemporal
+	Con esto tenemos que cambiamos el orden en el cual se están apuntando.
+- Comparar ambas mitades:
+	- left inicia en head, mientras que right inicia en prev de la inversión este queda como el último valor, porque current quedó como null, al llegar al final.
+	- Mientras ninguno de los pointers sea null seguir comparando, así no importa si es un palíndomo impar o par, porque cuando el más corto llegue a null ya no se va a compar el carácter medio de la segunda mitad, esto en caso de ser impar.
+- Si paso todos estos filtros, entonces si nos encontrasmos con que es un palíndromo.
+*/
 var isPalindromeLinkedList = function (head) {
     /* Casos edge */
-    if (!head && !head.next) {
-        return false;
-    }
+    /* Podría quitar mejor el caso edge, no aplica, 
+        A menos que sea si es solo head o solo null, sería devolver true.
+    */
 
     /* Encontrar el punto medio */
     let prevSlow = null;
@@ -17,7 +27,9 @@ var isPalindromeLinkedList = function (head) {
     }
 
     /* Cortar ambas mtitades */
-    prevSlow.next = null;
+    if (prevSlow) {
+        prevSlow.next = null;
+    }
 
     /* Invertir la segunda mitad */
     let prev = null;
@@ -32,9 +44,9 @@ var isPalindromeLinkedList = function (head) {
 
     /* Comparar ambas mitades */
     let left = head; //Creo que si sería iniciar aquí
-    let right =  //¿dónde lo inicio?
+    let right = prev; //Termina en prev, porque current teriman siendo null. Entonces empezamos en prev.
     while (left != null &&  right != null) {
-        if (left !== right) {
+        if (left.val !== right.val) {
             return false;
         }
         left = left.next;
