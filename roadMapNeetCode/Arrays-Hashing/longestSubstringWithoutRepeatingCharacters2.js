@@ -32,16 +32,37 @@ var lengthOfLongestSubstring = function (s) {
     let left = 0;
     let maxSize = 0;
 
+    console.log(`\n🔍 Iniciando análisis de la cadena: "${s}"`);
+    console.log('='.repeat(50));
+
     for (let i = 0; i < s.length; i++) {
+        console.log(`\n📍 Paso ${i + 1}: Procesando carácter '${s[i]}' en posición ${i}`);
+        console.log(`   Estado inicial: left=${left}, ventana actual=[${Array.from(mapaLetters).join(',')}]`);
+        
+        // Verificar si hay duplicado
+        if (mapaLetters.has(s[i])) {
+            console.log(`   ⚠️  DUPLICADO encontrado: '${s[i]}' ya existe en la ventana`);
+        }
         
         while (mapaLetters.has(s[i])) {
+            console.log(`   🗑️  Eliminando '${s[left]}' de posición ${left}`);
             mapaLetters.delete(s[left]);
             left++;
+            console.log(`   ➡️  Moviendo left a ${left}, ventana=[${Array.from(mapaLetters).join(',')}]`);
         }
+        
         mapaLetters.add(s[i]);
-        maxSize = Math.max(maxSize, i - left + 1)
+        const currentSize = i - left + 1;
+        maxSize = Math.max(maxSize, currentSize);
+        
+        console.log(`   ✅ Agregando '${s[i]}' a la ventana`);
+        console.log(`   📊 Ventana actual: [${Array.from(mapaLetters).join(',')}] (posiciones ${left}-${i})`);
+        console.log(`   📏 Tamaño actual: ${currentSize}, Máximo hasta ahora: ${maxSize}`);
+        console.log(`   🪟 Subcadena actual: "${s.slice(left, i + 1)}"`);
     }
 
+    console.log('\n' + '='.repeat(50));
+    console.log(`🎯 RESULTADO FINAL: ${maxSize}`);
     return maxSize;
 };
 
