@@ -42,7 +42,6 @@ var lengthOfLongestSubstring = function (s) {
         maxSize = Math.max(maxSize, i - left + 1)
     }
 
-
     return maxSize;
 };
 
