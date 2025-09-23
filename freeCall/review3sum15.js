@@ -4,41 +4,52 @@
     Practicamente, cada una de las combinaciones posibles.
 */
 let arrayOne = [-1, 0, 1, 2, -1, -4];
-var threeSum = function (numbers) {
+var threeSum = function (nums) {
     //Order
-    numbers = numbers.sort((a, b) => a - b);
+    nums = nums.sort((a, b) => a - b);
 
+    //Caso edge: Todos los números son positivos.
+    if (nums[0] > 0) {
+        return [];
+    }
 
     let ternias = [];
-    for (let index = 0; index < numbers.length - 2; index++) {
-        const element = numbers[index];
+    for (let index = 0; index < nums.length - 2; index++) {
+        const element = nums[index];
 
         //Casos Edge
-        if (index != 0 && element === numbers[index - 1]) {
-            index += 1;
+        if (index !== 0 && element === nums[index - 1]) {
             continue;
         }
 
         let left = index + 1;
-        let right = numbers.length - 1;
+        let right = nums.length - 1;
         
         while (left < right) {
             
-            let sum = element + numbers[left] + numbers[right];
+            let sum = element + nums[left] + nums[right];
             if (sum === 0) {
-                ternias.push([element, numbers[left], numbers[right]]);
+                ternias.push([element, nums[left], nums[right]]);
                 
                 left += 1;
                 right -= 1;
-            } else {
-                
 
-                while (numbers[left] === numbers[left -1]) {
+                /* Vale, si veo y observó que la lógica debe ser después de encontrar una ternia. 
+                    Y allí checar que no sean valores duplcados, para left y right.*/
+
+                //Después de incremantar no agregar lvalores iguales.
+                while (left < right && nums[left] === nums[left -1]) {
                     left += 1;
                 }
 
-                while (numbers[right] === numbers[right + 1]) {
+                while (nums[right] === nums[right + 1] && left < right) {
                     right -= 1;
+                }
+            } else {
+                if (sum < 0) {
+                    right -= 1;
+                } else {
+                    left += 1;
                 }
 
             }
@@ -46,4 +57,7 @@ var threeSum = function (numbers) {
         }
         
     }
+    return ternias;
 }
+
+console.debug(threeSum(arrayOne));
