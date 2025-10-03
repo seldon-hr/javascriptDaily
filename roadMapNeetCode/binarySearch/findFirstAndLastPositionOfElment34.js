@@ -1,9 +1,20 @@
-let nums = [-1, 0, 3, 5, 9, 12];
+let nums = [5,7,7,8,8,10];
 var searchRange = function (nums, target) {
 
-    
-    
-    return -1;
+    const first = findFirst(nums, target);
+    const last = findLast(nums, target);
+
+    //Casos edge
+    if (first >= 0 &&
+        first <= nums.length - 1 &&
+        last >= 0 &&
+        last <= nums.length - 1 &&
+        nums[first] === target &&
+        nums[last] === target) {
+        return [first, last];
+    } else {
+        return [-1, -1]
+    }
 }
 
 function findFirst(nums, target) {
@@ -44,4 +55,7 @@ function findLast(nums, target) {
 
 
 
-console.debug(findNumber(nums, 9));
+console.log(searchRange(nums, 8));   // debería dar [3, 4]
+console.log(searchRange(nums, 6));   // debería dar [-1, -1]
+console.log(searchRange(nums, 10));  // debería dar [5, 5]
+console.log(searchRange([], 0));     // debería dar [-1, -1]
