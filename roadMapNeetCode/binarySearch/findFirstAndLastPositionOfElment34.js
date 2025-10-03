@@ -1,4 +1,14 @@
-let nums = [5,7,7,8,8,10];
+/* 
+    34: Find first and last position of element in sorted Array
+    Ahora el caso donde se eleva este binarySearch, es la cuestión que bien, es usar y encontrar varios valores.
+    una ejecución por cada valor a encontrar.
+    Hint: 
+    - Cuando queremos encontrar el primero la clave right = mid -1
+    - Último elemento left = mid +1
+    Pero vamos a devolver left al primero y right al segundo.
+    Al final, estos dos valores se están cruzando, pero nos permiten encontrar el primero y el último, respectivamente. 
+*/
+let nums = [5, 7, 7, 8, 8, 10];
 var searchRange = function (nums, target) {
 
     const first = findFirst(nums, target);
