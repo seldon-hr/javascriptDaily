@@ -11,7 +11,7 @@ var searchIntoRotatedSortArray = function (nums, target) {
     while (left <= right) {
         let mid = Math.floor((left + right) / 2);
 
-        //Caso edge en primera iteración, después comprueba si es el valor.
+        //Caso edge en primera iteración, después en cada iteración comprueba si es el valor.
         if (nums[mid] === target) {
             return mid;
         }
