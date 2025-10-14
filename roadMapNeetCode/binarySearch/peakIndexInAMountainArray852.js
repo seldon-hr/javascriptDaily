@@ -1,5 +1,9 @@
 /* 
     852: Peak index in a Mountain Array
+    Hint: Also we could improve to manage a better condition as:
+    nums[mid] >= nums[mid + 1] ? right = mid : left = mid + 1
+    true: Search in left direction, help with right.
+    false: Search in right direction, help with left.
 */
 var findPeak = function(nums){
 
