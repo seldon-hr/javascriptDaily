@@ -1,5 +1,5 @@
 /* 
-248: First Bad version
+248: First Bad version, Usgin external isBadVersion as API
  Here we have optimization, justo one call to the API, different to the
  previouse one, when we use two calls.
 */
