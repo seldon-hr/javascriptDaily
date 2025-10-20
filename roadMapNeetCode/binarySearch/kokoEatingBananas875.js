@@ -1,5 +1,7 @@
 /* 
     875: Koko Eating Bananas
+    this problem joins a category which consits on 
+    'find the minimum/maximum value where [condition] is true':
 */
 
 var findMinimum = function (piles, h) {
@@ -12,6 +14,7 @@ var findMinimum = function (piles, h) {
         
         //Here we have to compare (mid -1), due to know if there's a slower speed to match with time.
         let current = totalHours(piles, mid)
+        /* Here's allows to keep search if there's mininum value than the current. */
         if (current <= h) {
             //Find the minimum slower.
             right = mid;
