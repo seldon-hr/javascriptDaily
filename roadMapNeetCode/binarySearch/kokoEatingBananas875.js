@@ -4,8 +4,8 @@
 
 var findMinimum = function (piles, h) {
     let left = 1
-    let right = Math.max(piles); //The max, wasn't the time, the largest number of bananas on a pile
-
+    let right = Math.max(...piles); //The max, wasn't the time, the largest number of bananas on a pile
+                        /* we have to use spread operator */
     while (left != right) {
         let mid = Math.floor((left + right) / 2);
         
