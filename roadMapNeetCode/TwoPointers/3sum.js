@@ -60,6 +60,7 @@ var threeSum = function (nums) {
                 //Move pointers
                 left += 1;
                 right -= 1;
+                
 
 
             } else if(sum < 0) {
