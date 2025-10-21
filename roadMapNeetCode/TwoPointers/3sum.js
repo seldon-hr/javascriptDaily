@@ -9,7 +9,7 @@
         - Also left the edge cases, when the first after sorted wasn't a negative number.
     */
 /* First try */   
-var threeSum = function (nums) {
+/* var threeSum = function (nums) {
     let set = 0;
     let arrayAnswers = [];
     
@@ -28,6 +28,47 @@ var threeSum = function (nums) {
         set += 1;
     }
 
+    return arrayAnswers;
+} */
+
+/* Second try */
+var threeSum = function (nums) {
+    let arrayAnswers = [];
+
+    nums.sort((a, b) => a - b)
+
+    //Edge cases
+    if (nums[0] > 0) {
+        return []
+    }
+
+    for (let set = 0; set < nums.length - 2; set++) {
+
+        if (set > 0 && nums[set] === nums[set - 1]) {
+            continue
+        }
+
+        let left = set + 1;
+        let right = nums.length - 1; 
+
+        while (left < right) {
+            let sum = nums[set] + nums[left] + nums[right];
+
+            if (sum === 0) {
+                arrayAnswers.push([nums[set], nums[left], nums[right]]);
+
+                //Move pointers
+                left += 1;
+                right -= 1;
+
+
+            } else if(sum < 0) {
+                left += 1
+            } else {
+                right -= 1
+            }
+        }
+    }
     return arrayAnswers;
 }
 
