@@ -44,6 +44,7 @@ var threeSum = function (nums) {
 
     for (let set = 0; set < nums.length - 2; set++) {
 
+       // Avoid duplicates, when the value is equal, jump the fixed value if was the same the previous case.
         if (set > 0 && nums[set] === nums[set - 1]) {
             continue
         }
@@ -57,10 +58,17 @@ var threeSum = function (nums) {
             if (sum === 0) {
                 arrayAnswers.push([nums[set], nums[left], nums[right]]);
 
-                //Move pointers
+                //Move pointers because they equal, avoid store duplicates.
                 left += 1;
                 right -= 1;
-                
+
+                //Increment the value left and right, these could be equal.
+                while (nums[left] === nums[left - 1]) {
+                    left += 1
+                }
+                while (nums[right] === nums[right + 1]) {
+                    right -= 1
+                }
 
 
             } else if(sum < 0) {
