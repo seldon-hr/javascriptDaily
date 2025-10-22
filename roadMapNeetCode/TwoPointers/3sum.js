@@ -63,10 +63,10 @@ var threeSum = function (nums) {
                 right -= 1;
 
                 //Increment the value left and right, these could be equal.
-                while (nums[left] === nums[left - 1]) {
+                while (left < right && nums[left] === nums[left - 1]) { //I left to put the contion to not break the boundaries
                     left += 1
                 }
-                while (nums[right] === nums[right + 1]) {
+                while (left < right && nums[right] === nums[right + 1]) {
                     right -= 1
                 }
 
