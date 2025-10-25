@@ -1,6 +1,6 @@
 /* 
     18: 4sum
-
+    The next pattern Ksum -> O(n^(k-2))
 */
 
 var fourSum = function (nums, target) {
