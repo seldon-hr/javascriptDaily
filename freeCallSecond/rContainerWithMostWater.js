@@ -30,7 +30,7 @@ var maxArea = function(height) {
         //Moves pointers
         if(height[left] < height[right]){
             left += 1
-        }{
+        } else { //That was the only mistake, a syntax mistake, left to put else. The rest was by my own.
             right -= 1
         }
     }
