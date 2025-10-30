@@ -20,17 +20,20 @@ var trappingWater = function(height){
     while (left < right) { //I think it's enough, 'cause needs to sides to calculate and area.
         let area = 0;
 
-        if (maxLeft < maxRight) {
-            //update when is higher
-            maxLeft < height[left] ? maxLeft = height[left] : maxLeft
+        if (maxLeft <= maxRight) {
+            area = maxLeft - height[left]; //Omits because already know who is the minimum
             
-            area = Math.min(maxLeft, maxRight) - height[left];
+            //update when is higher
+            maxLeft = Math.max(maxLeft, height[left])
+            
             left += 1
         } else {
-            //update when is higher
-            maxRight < height[right] ? maxRight = height[right] : maxRight
+            area = maxRight - height[right];
+
             
-            area = Math.min(maxLeft, maxRight) - height[right];
+            //update when is higher
+            maxRight = Math.max(maxRight, height[right])
+            
             right -= 1
         }
         
