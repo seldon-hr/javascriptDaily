@@ -11,36 +11,30 @@ var trappingWater = function(height){
     let left = 0;
     let right = height.length - 1;
     let totalWater = 0;
-    let currentPosition = 0;
-    let reversedHeight = height.toReversed()
+
+    //Max heights
+    let maxLeft = height[left];
+    let maxRight = height[right];
+
 
     while (left < right) { //I think it's enough, 'cause needs to sides to calculate and area.
+        let area = 0;
 
-        //Max heights
-        let maxLeft = Math.max(height);
-        let maxRight = Math.max(reversedHeight);
-        /* but lef'ts something as the how to know if the new is taller, 
-        and the approach with several valley, not always apllies the max general
-        use the max at that point. 0 - i and i - 0, we left this.
-        */
-
-        maxLeft < height[left] ? maxLeft = height[left] : maxLeft
-        maxRight < height[right] ? maxRight = height[right] : maxRight
-
-
-        let area = Math.min(maxLeft, maxRight) - currentPosition;
-        totalWater += area;
-
-        if (height[left] < height[right]) {
+        if (maxLeft < maxRight) {
+            //update when is higher
+            maxLeft < height[left] ? maxLeft = height[left] : maxLeft
+            
+            area = Math.min(maxLeft, maxRight) - height[left];
             left += 1
         } else {
+            //update when is higher
+            maxRight < height[right] ? maxRight = height[right] : maxRight
+            
+            area = Math.min(maxLeft, maxRight) - height[right];
             right -= 1
         }
-
-
-
-        //I'm not sure yet, where's put this.
-        currentPosition += 1;
+        
+        totalWater += area;
     }
     
     return totalWater;
