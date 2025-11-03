@@ -7,6 +7,9 @@
 
     I think, first is to know the mid of the matrix
     then the mid of the each row. (as traditional binary search)
+
+
+    The trick: convert the matrix in a virtual array to searh into this.
 */
 
 var search2d = function (matrix, target) {
@@ -23,6 +26,7 @@ var search2d = function (matrix, target) {
         //Compute row and col
         let matrixCols = matrix[0].length
 
+        /* Also know how to caculate the row and col position */
         let row = Math.floor(mid / matrixCols) //As we round under to the mid, the same with a matrix
         let col = Math.floor(mid % matrixCols)
 
