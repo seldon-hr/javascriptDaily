@@ -11,16 +11,11 @@
 
 var search2d = function (matrix, target) {
     let left = 0;
-    let right = 0;
-    //Use right as the last position of the matrix:
-    for (const rowTemplate of matrix) {
-        right += rowTemplate.length
-    }
-    right -= 1;  //total of positions, the last position of the virtual array.
+    //Instead to sum of the length in each row with loop, use multiplication about matrix
+    let right = matrix.length * matrix[0].length - 1; // matrix has  m (rows) and n (cols), the total of numbers  = m * n
 
 
-
-    while (left < right) {
+    while (left <= right) {
         let mid = Math.floor((left + right) / 2);
         console.debug('Each mid:', mid);
 
@@ -28,21 +23,21 @@ var search2d = function (matrix, target) {
         //Compute row and col
         let matrixCols = matrix[0].length
 
-        let row = mid / matrixCols
-        let col = mid % matrixCols
+        let row = Math.floor(mid / matrixCols) //As we round under to the mid, the same with a matrix
+        let col = Math.floor(mid % matrixCols)
 
         let currentPosition = matrix[row][col]
 
 
         if (target === currentPosition) {
             return true;
-        } else if (target < currentPosition) {
-            //left = mid + 1
+        } else if (target > currentPosition) {
+            left = mid + 1
         } else {
-            //right = mid -1
+            right = mid -1
         }
     }
-    return left
+    return false
 }
 
 
