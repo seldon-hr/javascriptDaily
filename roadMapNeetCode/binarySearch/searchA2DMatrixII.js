@@ -3,6 +3,9 @@
 
     Hint: there's no other, forget to use the mid and the traditional two pointers opposite direction
     that was my confusion.
+
+    This exercise is show how binary search not needs also the use of the two pointers and compute the mid,
+     also discard by rows in this case. As multiplication table.
 */
 
 var search2d = function (matrix, target) {
