@@ -7,7 +7,7 @@
 
 var countNegatives = function (grid) {
     let totalCount = 0
-    
+
     for (const row of grid) {
         let firstNegative = binarySearchFirstNegative(row);
 
@@ -21,7 +21,7 @@ var countNegatives = function (grid) {
 
 function binarySearchFirstNegative(row) {
     let left = 0
-    let right = row.length - 1
+    let right = row.length; //When is not negative ensure the the sustraction make bellow give 0. That was the leetcode error.
 
     while (left < right) {
         let mid = Math.floor((left + right) / 2)
