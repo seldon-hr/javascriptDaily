@@ -2,7 +2,13 @@
     1351: Count Negative Numbers in a Sorted Matrix
 
     Own hints:
+    Use binary search by row, finding first negative.
+    Complexity O(m * log n) = O(m log n)
+    m = input rows
+    n = input elements of row
 
+    if we use brute fore or naive solution, count by each row
+    Complexity O (m * n)
 */
 
 var countNegatives = function (grid) {
