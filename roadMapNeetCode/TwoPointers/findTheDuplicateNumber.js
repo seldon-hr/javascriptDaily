@@ -6,13 +6,18 @@
 
 var findDuplicate = function (nums) {
     let slow = 0;
-    let fast = slow + 1;
+    let fast = 0;
 
-    while (fast < nums.length) {
-        if (nums[slow] === nums[fast]) {
-            return nums[slow]
+    //First move
+    slow = nums[0]
+    fast = nums[nums[0]]
+
+    while (/* slow != fast */) { //condition left
+        if (slow === fast) {
+            return nums[fast]
         } else {
-            slow += 1
+            slow = nums[slow]
+            fast = nums[nums[fast]]
         }
     }
 }
