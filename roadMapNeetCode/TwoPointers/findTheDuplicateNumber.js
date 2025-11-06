@@ -8,18 +8,22 @@ var findDuplicate = function (nums) {
     let slow = 0;
     let fast = 0;
 
-    //First move
-    slow = nums[0]
-    fast = nums[nums[0]]
+    //First phase
+    //The pointers match
+    do {
+        //First move
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+    } while (slow !== fast);
 
-    while (/* slow != fast */) { //condition left
-        if (slow === fast) {
-            return nums[fast]
-        } else {
+    //Second phase
+    slow = 0
+    while (slow !== fast) {
             slow = nums[slow]
-            fast = nums[nums[fast]]
-        }
+            fast = nums[fast]
     }
+
+    return slow;
 }
 
 
