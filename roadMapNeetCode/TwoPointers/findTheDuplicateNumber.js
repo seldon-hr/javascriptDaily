@@ -79,7 +79,7 @@ console.debug(findDuplicate([1, 3, 4, 2, 2]));
 */
 
 /* Example 2 */
-console.debug(findDuplicate([3, 1, 3, 4, 2]));
+/* console.debug(findDuplicate([3, 1, 3, 4, 2])); */
 /* 
     First Phase: loop 1
     1: 
@@ -98,7 +98,7 @@ console.debug(findDuplicate([3, 1, 3, 4, 2]));
 */
 
 /* Example 3 */
-console.debug(findDuplicate([3, 3, 3, 3, 3]));
+/* console.debug(findDuplicate([3, 3, 3, 3, 3])); */
 /* 
     First Phase: loop 1
     1: 
