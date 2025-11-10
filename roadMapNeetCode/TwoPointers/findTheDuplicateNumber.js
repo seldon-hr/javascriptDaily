@@ -1,5 +1,5 @@
 /* 
-    278: Find the Duplicate Number
+    287: Find the Duplicate Number
 
     Own hint: Fast and slow pointers
 */
