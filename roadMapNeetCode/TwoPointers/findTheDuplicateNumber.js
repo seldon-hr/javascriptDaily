@@ -55,8 +55,34 @@ console.debug(findDuplicate([1, 3, 4, 2, 2]));
         4 != 4 -> finish loop, they are equal.
     
     However, if you notice, the fast pointer was stucked in 4, since the second iteration.
-    That's the key. It'll arrive the moment where fast is stuckec, and slow needs to reach.
+    That's the key. It'll arrive the moment where fast is stucked, and slow needs to reach.
 */
 
-/* console.debug(findDuplicate([3,1,3,4,2]));
-console.debug(findDuplicate([3,3,3,3,3])); */
+/* Example 2 */
+console.debug(findDuplicate([3, 1, 3, 4, 2]));
+/* 
+    First Phase: loop 1
+    1: 
+        slow = 3
+        fast = 4
+        3 != 4 -> continue
+    2:
+        slow = 4
+        fast = 3
+        4 != 3 -> continue
+    3:
+        slow = 2
+        fast = 2
+        2 != -> finish loop
+    This is different, here fast didn't stuck, but slow reach again. That's the true floyd's cycle
+*/
+
+/* Example 3 */
+console.debug(findDuplicate([3, 3, 3, 3, 3]));
+/* 
+    First Phase: loop 1
+    1: 
+        slow = 3
+        fast = 3
+        3 != 3 finish loop
+*/
