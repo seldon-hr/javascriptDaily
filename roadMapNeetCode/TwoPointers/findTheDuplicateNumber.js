@@ -56,6 +56,26 @@ console.debug(findDuplicate([1, 3, 4, 2, 2]));
     
     However, if you notice, the fast pointer was stucked in 4, since the second iteration.
     That's the key. It'll arrive the moment where fast is stucked, and slow needs to reach.
+
+    Second Phase:
+    Reset slow pointer
+        slow = 0
+    Loop 2
+    1:
+        0 != 4 ? loop : finish
+        slow = nums[slow] = nums[0] = 1
+        fast = nums[fast] = nums[4] = 2
+    2:
+        1 != 2 -> continue
+        slow = 3
+        fast = 4
+    3:
+        3 != 4 -> continue
+        slow = 2
+        fast = 2
+    4:
+        2 != 2 -> finish loop, they are equal.    
+    
 */
 
 /* Example 2 */
