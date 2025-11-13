@@ -1,25 +1,28 @@
 var longestSubstring = function (s) {
     s = s.split('')
-    let mapExisting = new Map()
+    let mapExisting = new Set()
     let left = 0
-    let right = 1
+    let maxLength = 0;
+    
+    for (let right = 0; right < s.length; right++) {
+        //Expanding window by adding s[right]
+        right += 1
+        mapExisting.set(s[right])
 
-    while (left < s.length) {
+        while (left < s.length && s[left] != s[right]) {
+            left += 1
 
-        //Store in map
-        if (!mapExisting.get([[left],[right]])) {
-            mapExisting.set([[left], [right]])
+            mapExisting.delete(s[left])
+
+
+            //Update maxLength
+            let currentLength = right - left
+            maxLength = Math.max(maxLength, currentLength)
+            
         }
         
-        //Move almost always ->
-        if (s[left] != s[right]) {
-            right += 1
-        } else {
-        //Move when are duplicate
-            left += 1
-        }
-    }
-    console.debug(mapExisting);
+    }   
+    return maxLength
 }
 
 console.debug(longestSubstring('abcabcbb'));
