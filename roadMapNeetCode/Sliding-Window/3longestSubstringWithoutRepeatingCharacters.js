@@ -6,21 +6,20 @@ var longestSubstring = function (s) {
     
     for (let right = 0; right < s.length; right++) {
         //Expanding window by adding s[right]
-        right += 1
-        mapExisting.set(s[right])
+        mapExisting.add(s[right])
 
-        while (left < s.length && s[left] != s[right]) {
+        while (left < s.length && s[left] === s[right]) {
+
+            if (mapExisting.get(s[right])) {
+                mapExisting.delete(s[left]) //it's the same
+            }
+
             left += 1
-
-            mapExisting.delete(s[left])
-
-
-            //Update maxLength
-            let currentLength = right - left
-            maxLength = Math.max(maxLength, currentLength)
-            
         }
         
+        //Update maxLength
+        let currentLength = right - left
+        maxLength = Math.max(maxLength, currentLength)      
     }   
     return maxLength
 }
