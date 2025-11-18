@@ -12,10 +12,10 @@ var minimumSize = function (nums, target) {
         while (currentSum >= target) {
             //Try to minimize: update minLength
 
-            minLength = Math.min(minLength, )
+            minLength = Math.min(minLength, right - left + 1)
 
             currentSum -= nums[left]
-            left -= 1
+            left += 1
         }
 
     }
