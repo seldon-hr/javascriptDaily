@@ -23,4 +23,6 @@ var minimumSize = function (nums, target) {
 }
 
 
-console.debug(minimumSize([2,3,1,2,4,3],7));
+console.debug(minimumSize([2, 3, 1, 2, 4, 3], 7));
+console.log(minimumSize([1,4,4], 4)); 
+console.log(minimumSize([1,1,1,1,1,1,1,1], 11));
