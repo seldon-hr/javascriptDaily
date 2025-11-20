@@ -20,8 +20,8 @@ var longestRepeating = function (string, k) {
         let range = (right - left + 1) - maxFrequent
         //Shrink the window, is not valid.
         while (range > k) {
-            hash[string[left]]-=1
-                left += 1        
+            hash[string[left]] -= 1
+            left += 1        
             range = (right - left + 1) - maxFrequent //Recalculate
         }
         //Update maxSubString
