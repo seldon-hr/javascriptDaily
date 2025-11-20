@@ -12,8 +12,24 @@ var longestSubstring = function (s) {
         //While s[right] is already in the window(duplicate)
         
         while (mapExisting.has(s[right])) {
-            mapExisting.delete(s[left]) //it's the same 
+            /* Here, enters for the first time when we have a character
+            who stored previously, then delete that case, but now who expands,
+            delete the previous one, both are they same, and we check that case before
+            and we know its length. The windows moves.
+            Happens from this temporal window:
+                [a, b, c, a, b, c, b, b]
+                ⬆️       ⬆️
+                left.    right
+              */
+            mapExisting.delete(s[left]) 
             left += 1
+            /* 
+            to this:
+                [a, b, c, a, b, c, b, b]
+                   ⬆️    ⬆️
+                 left.   right
+            without repeating character. in the momwent we delete in the left, we advanced left.    
+            */
         }
 
         //Add s[right] it wasn't a duplicate
