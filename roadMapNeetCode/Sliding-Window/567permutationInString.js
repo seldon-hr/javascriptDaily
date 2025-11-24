@@ -1,8 +1,6 @@
 var isTherePermutations = function (s1, s2) {
     s1 = s1.split('')
     s2 = s2.split('')
-
-    
     let tracker = new Map()
 
     //Track each case of its appears of s1
@@ -11,7 +9,6 @@ var isTherePermutations = function (s1, s2) {
         tracker.set(s1[counter],( tracker.get(s1[counter]) || 0) + 1)
     }
     
-
     //Set a temporal window.
     let left = 0
     /* hint, when we have a length that not change, this is the
@@ -40,15 +37,15 @@ var isTherePermutations = function (s1, s2) {
         } else {
         //3. delete the previous
             //if was found, decrease, we are advanced.
-            if (mapTemporal.get(s2[left])) {
-                if (mapTemporal.get(s2[left] > 0)) {
-                    //Decrase if does exits
-                    mapTemporal.set(s2[left], mapTemporal.get(s2[left]) - 1)
-                } else {
+            let count = mapTemporal.get(s2[left]) //Optimize the version, with this works the case to delete or decrease
+                if (count === 1) {
                     //Delete if is zero
                     mapTemporal.delete(s2[left])
+                } else {
+                    //Decrase if does exits
+                    mapTemporal.set(s2[left], count - 1)
                 }
-            }
+            
             left += 1
         }
         
@@ -77,5 +74,6 @@ function compareMaps(map1, map2) {
     return true
 }
 
-console.debug(isTherePermutations('ab', 'eidbaooo'));
-console.debug(isTherePermutations('ab', 'eidboaoo'));
+/* console.debug(isTherePermutations('ab', 'eidbaooo'));
+console.debug(isTherePermutations('ab', 'eidboaoo')); */
+console.debug(isTherePermutations('adc', 'dcda'));
