@@ -35,16 +35,40 @@ var isTherePermutations = function (s1, s2) {
         
         //2. Check if match the numbers for each one.
         /* we need to compare with the tracker */
-        if (condition) {
+        if (compareMaps(tracker, mapTemporal)) {
             return true //if have the same values. Permutation
         } else {
         //3. delete the previous
-            mapTemporal.get(s2[left]) - 1 //if was found, decrease, we are advanced.
+            //if was found, decrease, we are advanced.
+            if (mapTemporal.get(s2[left])) {
+                mapTemporal.set(s2[left], mapTemporal.get(s2[left]) - 1)
+            }
             left += 1
         }
         
     }
     return false
+}
+
+function compareMaps(map1, map2) {
+    if (map1.size !== map2.size) {
+        return false
+    }
+
+    //Commpare each value:
+    for (const [key, val] of map1) {
+        //map contains the keys
+        if (!map2.has(key)) {
+            return false
+        }
+
+        //Compare the value
+        if (val !== map2.get(key)) {
+            return false
+        }
+
+        return true
+    }
 }
 
 console.debug(isTherePermutations('ab', 'eidbaooo'));
