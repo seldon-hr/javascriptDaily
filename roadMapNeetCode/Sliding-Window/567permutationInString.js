@@ -41,7 +41,13 @@ var isTherePermutations = function (s1, s2) {
         //3. delete the previous
             //if was found, decrease, we are advanced.
             if (mapTemporal.get(s2[left])) {
-                mapTemporal.set(s2[left], mapTemporal.get(s2[left]) - 1)
+                if (mapTemporal.get(s2[left] > 0)) {
+                    //Decrase if does exits
+                    mapTemporal.set(s2[left], mapTemporal.get(s2[left]) - 1)
+                } else {
+                    //Delete if is zero
+                    mapTemporal.delete(s2[left])
+                }
             }
             left += 1
         }
@@ -67,9 +73,9 @@ function compareMaps(map1, map2) {
             return false
         }
 
-        return true
     }
+    return true
 }
 
 console.debug(isTherePermutations('ab', 'eidbaooo'));
-/* console.debug(isTherePermutations('ab', 'eidboaoo')); */
+console.debug(isTherePermutations('ab', 'eidboaoo'));
