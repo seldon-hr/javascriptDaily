@@ -10,12 +10,13 @@ var findAnagrams = function (s, p) {
 
     let anagramsIndexes = []
     //The size of the window is constant => p.length - 1
+    let left = 0
     let tempMap = new Map()
     // Add the first characters of the iteraion
-    let left = 0
-    while (left < p.length - 1) {
-        tempMap.set(s[left], (tempMap.get(s[left]) || 0) + 1)
-        left += 1
+    let counter = 0
+    while (counter < p.length - 1) {
+        tempMap.set(s[counter], (tempMap.get(s[counter]) || 0) + 1)
+        counter += 1
     }
     
     //Main loop to iterate in each case
@@ -26,15 +27,17 @@ var findAnagrams = function (s, p) {
 
         //Compare if they are equal
         if (compareMaps(trackerP, tempMap)) {
-            anagramsIndexes.push() //How add the first index, maybe before needs a first comparision
-        } else {
-            let currentValue = tempMap.get(s[right])
-            if (currentValue === 1) {
-                tempMap.delete(tempMap(s[right]))
-            } else {
-                tempMap.set(tempMap(s[right]), currentValue - 1)
-            }
+            anagramsIndexes.push(left) //left still our start or where sliding windows starts.
         }
+        
+        let currentValue = tempMap.get(s[left])
+        if (currentValue === 1) {
+            tempMap.delete((s[left]))
+        } else {
+            tempMap.set(s[left], currentValue - 1)
+        }
+        //Always advanced left, becaus always is advancing right.
+        left += 1
         
     }
 
@@ -44,3 +47,22 @@ var findAnagrams = function (s, p) {
 
 
 console.debug(findAnagrams('cbaebabacd', 'abc'));
+
+function compareMaps(map1, map2) {
+    
+    if (map1.size !== map2.size) {
+        return false
+    }
+
+    for (const [key, value] of map1) {
+        if (!map2.has(key)) {
+            return false
+        } 
+
+        if (value !== map2.get(key)) {
+            return false
+        }
+    }
+
+    return true
+}
