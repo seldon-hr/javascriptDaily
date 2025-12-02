@@ -26,7 +26,7 @@ var TimeMap = function () {
  */
 TimeMap.prototype.set = function(key, value, timestamp) {
 
-    if (this.map.hasOwnProperty[key]) {
+    if (this.map.hasOwnProperty(key)) {
         this.map[key].push({ 'timestamp': timestamp, 'value': value })
         //This the map, to reference to the lookinf ofr it.
     } else {
@@ -51,18 +51,20 @@ TimeMap.prototype.get = function (key, timestamp) {
 
         while (left < right) {
             let mid = Math.ceil((left + right) / 2)
-            if (range[mid].value === timestamp) {
+            if (range[mid].timestamp === timestamp) {
+                //console.log(range[right].value, range[right].timestamp)
                 return range[mid].value //We find exact, return that.
-            } else if(range[mid].value < timestamp) {
+            } else if(range[mid].timestamp < timestamp) {
                 left = mid
             } else {
                 right = mid - 1
             }
         }
-        return right
+        //console.log(range[right].value, range[right].timestamp)
+        return range[right].timestamp <= timestamp ? range[right].value : '' //Here we have to consider if the curren timestamp is bigger, it is the case when we didn't found.
 
     } else {
-        return null
+        return ""
     }
 };
 
