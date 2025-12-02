@@ -42,9 +42,9 @@ TimeMap.prototype.set = function(key, value, timestamp) {
  */
 TimeMap.prototype.get = function (key, timestamp) {
     
-    if (timeMap.hasOwnProperty(key)) {
+    if (this.map.hasOwnProperty(key)) {
         //if exits search for the value
-        let range = timeMap[key]
+        let range = this.map[key]
 
         let left = 0
         let right = range.length - 1
