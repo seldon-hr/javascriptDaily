@@ -13,34 +13,9 @@
 */
 
 
-
-var TimeMap = function (operations, values) {
-    let output = []
-    
-    for (let i = 0; i < operations.length; i++) {
-        switch (operation) {
-            case 'TimeMap':
-                let timeMap = new TimeMap()
-                //operations.push(null)
-                break;
-            case 'set':
-                let key = values[i][0]
-                let value = values[i][1]
-                let timestamp = values[i][2]
-                timeMap.set(key, value, timestamp)
-                //operations.push(null) 
-                break;
-            case 'get':
-                let keyG = values[i][0]
-                let timestampG = values[i][0]
-                let val = timeMap.get(keyG, timestampG)
-                //operations.push(val)
-            default:
-                break;
-        }
-    }
-
-    return output
+/* Understanding the fundamentals */
+var TimeMap = function () {
+    this.map = {} //Make persist across the methods. when declares with this.
 };
 
 /** 
@@ -50,9 +25,13 @@ var TimeMap = function (operations, values) {
  * @return {void}
  */
 TimeMap.prototype.set = function(key, value, timestamp) {
-    timeMap[key].push({ 'timeStamp': timestamp, 'value': value })
 
-    return timeMap
+    if (this.map.hasOwnProperty[key]) {
+        this.map[key].push({ 'timestamp': timestamp, 'value': value })
+        //This the map, to reference to the lookinf ofr it.
+    } else {
+        this.map[key] = [{ 'timestamp': timestamp, 'value': value}] //Initialize value
+    }
 };
 
 /** 
@@ -93,3 +72,33 @@ TimeMap.prototype.get = function (key, timestamp) {
  * obj.set(key,value,timestamp)
  * var param_2 = obj.get(key,timestamp)
  */
+
+
+
+
+/* let output = []
+    
+    for (let i = 0; i < operations.length; i++) {
+        switch (operation) {
+            case 'TimeMap':
+                let timeMap = new TimeMap()
+                //operations.push(null)
+                break;
+            case 'set':
+                let key = values[i][0]
+                let value = values[i][1]
+                let timestamp = values[i][2]
+                timeMap.set(key, value, timestamp)
+                //operations.push(null) 
+                break;
+            case 'get':
+                let keyG = values[i][0]
+                let timestampG = values[i][0]
+                let val = timeMap.get(keyG, timestampG)
+                //operations.push(val)
+            default:
+                break;
+        }
+    }
+
+    return output */
