@@ -30,18 +30,23 @@ function findFirst(nums, target) {
 
     return nums[left] == target ? left : -1
 }
-
+/* Total opposite way to findLast against the findFirst
+    mid; round up to find middle
+    update: left = mid to considerer mid as case
+    the update is opposite. 
+*/
 function findLast(nums, target) {
     let left = 0
     let right = nums.length - 1
 
     while (left < right) {
-        let mid = Math.ceil((left + right) / 2)
+        //With this need to round up
+        let mid = Math.ceil((left + right) / 2) //Math.floor((left + right + 1) / 2) 
 
         if (nums[mid] <= target) {
-            left = mid 
+            left = mid //Search to the right
         } else {
-            right = mid  - 1
+            right = mid  - 1 //Search to the left
         }
     }
 
