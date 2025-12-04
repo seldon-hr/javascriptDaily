@@ -1,4 +1,5 @@
 var mergeM = function (nums1, nums2) {
+    /* 1. Merge Arrays */    
     let merge = []
     let n1 = 0
     let n2 = 0
@@ -28,8 +29,23 @@ var mergeM = function (nums1, nums2) {
             }
         }  
     }
-    return merge
+    console.debug(`Merge Array: ${merge}`);
+    /* 2. Find the median */
+    //The merge arrays is method type odd or even.
+    let length = merge.length
+    let mid = Math.floor(length / 2)
+    let median = 0
+    //odd
+    if (length % 2 !== 0) {
+        median = merge[mid]
+    }
+    //even
+    else {
+        median = (merge[mid] + merge[mid - 1]) / 2
+    }
+    return median
 }
 
 
 console.debug(mergeM([1, 2], [3, 4]));
+console.debug(mergeM([1, 3], [2]));
