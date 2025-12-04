@@ -74,8 +74,8 @@ var mergeM = function (nums1, nums2) {
         /* Boundaries Elements */
         let left_max_1 = (partition1 == 0) ? -Infinity : nums1[partition1 - 1]
         let right_min_1 = (partition1 == m) ? Infinity : nums1[partition1]
-        let left_max_2 = (partition2 == 0) ? -Infinity : nums2[partition1 - 1]
-        let right_min_2 = (partition3 == n) ? Infinity : nums1[partition2]
+        let left_max_2 = (partition2 == 0) ? -Infinity : nums2[partition2 - 1]
+        let right_min_2 = (partition2 == n) ? Infinity : nums1[partition2]
 
 
         /* Compare if valid partition */
@@ -86,15 +86,16 @@ var mergeM = function (nums1, nums2) {
             //even
             if ((m + n) % 2 == 0) {
                 //here i have to use 4 elements and make something
-                return 
-            }
+                let laregesLeft = Math.max(left_max_1, left_max_2)
+                let smallerRight = Math.min(right_min_1, right_min_2)
+                return (laregesLeft + smallerRight) / 2
             //odd
             else {
                 //maybe only two elements
                 return
             }
             
-        } else (left_max_1 > right_min_2){
+        } else if (left_max_1 > right_min_2){
             //invalid partition
             //Search to left
             right = partition1 - 1
