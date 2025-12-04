@@ -47,5 +47,64 @@ var mergeM = function (nums1, nums2) {
 }
 
 
+/* O(log(n + m)) approach */
+var mergeM = function (nums1, nums2) {
+    //edge case
+    //we consider the case who has size larger, ude to have more elements, for the median
+    if (nums1.length > nums2.length) {
+        return findMedianSortedArrays(nums2, nums1)
+    }
+
+
+    let m = nums1.length
+    let n = nums2.length
+
+    let left = 0
+    let right = m //Use binary search as counting with array who has more elements
+
+
+    while (left <= right) {
+        //Partition 1:
+        //partition 1 plays as mid of binarySearch structure
+        let partition1 = Math.floor((left + right) / 2)
+
+        let partition2 = right - partition1
+        //.              size max - elements on left1
+
+        /* Boundaries Elements */
+        let left_max_1 = (partition1 == 0) ? -Infinity : nums1[partition1 - 1]
+        let right_min_1 = (partition1 == m) ? Infinity : nums1[partition1]
+        let left_max_2 = (partition2 == 0) ? -Infinity : nums2[partition1 - 1]
+        let right_min_2 = (partition3 == n) ? Infinity : nums1[partition2]
+
+
+        /* Compare if valid partition */
+        if (left_max_1 <= right_min_2 &&
+            left_max_2 <= right_min_1
+        ) {
+            //Valid partition -> Calculate median
+            //even
+            if ((m + n) % 2 == 0) {
+                //here i have to use 4 elements and make something
+                return 
+            }
+            //odd
+            else {
+                //maybe only two elements
+                return
+            }
+            
+        } else (left_max_1 > right_min_2){
+            //invalid partition
+            //Search to left
+            right = partition1 - 1
+        } else {
+            //serach to right
+            left = partition
+        }
+    }
+}
+
+
 console.debug(mergeM([1, 2], [3, 4]));
 console.debug(mergeM([1, 3], [2]));
