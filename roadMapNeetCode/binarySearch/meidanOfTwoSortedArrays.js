@@ -48,7 +48,7 @@ var mergeM = function (nums1, nums2) {
 
 
 /* O(log(n + m)) approach */
-var mergeM = function (nums1, nums2) {
+var findMedianSortedArrays = function (nums1, nums2) {
     //edge case
     //we consider the case who has size larger, ude to have more elements, for the median
     if (nums1.length > nums2.length) {
@@ -93,7 +93,7 @@ var mergeM = function (nums1, nums2) {
             //odd
             else {
                 //maybe only two elements
-                let median = Math.max(left_max_1, right_min_2)
+                let median = Math.max(left_max_1, left_max_2)
                 return median
             }
             
@@ -103,7 +103,7 @@ var mergeM = function (nums1, nums2) {
             right = partition1 - 1
         } else {
             //serach to right
-            left = partition
+            left = partition1 + 1
         }
     }
 }
