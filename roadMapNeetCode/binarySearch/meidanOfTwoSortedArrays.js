@@ -68,14 +68,14 @@ var mergeM = function (nums1, nums2) {
         //partition 1 plays as mid of binarySearch structure
         let partition1 = Math.floor((left + right) / 2)
 
-        let partition2 = right - partition1
+        let partition2 = Math.floor((m + n + 1) / 2) - partition1
         //.              size max - elements on left1
 
         /* Boundaries Elements */
         let left_max_1 = (partition1 == 0) ? -Infinity : nums1[partition1 - 1]
         let right_min_1 = (partition1 == m) ? Infinity : nums1[partition1]
         let left_max_2 = (partition2 == 0) ? -Infinity : nums2[partition2 - 1]
-        let right_min_2 = (partition2 == n) ? Infinity : nums1[partition2]
+        let right_min_2 = (partition2 == n) ? Infinity : nums2[partition2]
 
 
         /* Compare if valid partition */
@@ -89,10 +89,12 @@ var mergeM = function (nums1, nums2) {
                 let laregesLeft = Math.max(left_max_1, left_max_2)
                 let smallerRight = Math.min(right_min_1, right_min_2)
                 return (laregesLeft + smallerRight) / 2
+            }
             //odd
             else {
                 //maybe only two elements
-                return
+                let median = Math.max(left_max_1, right_min_2)
+                return median
             }
             
         } else if (left_max_1 > right_min_2){
